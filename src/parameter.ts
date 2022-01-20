@@ -187,14 +187,14 @@ interface Options {
     application: string;
 
     /***
-     * provider - Service(s) either Consumed or Provided
+     * resource - Descriptive Identifier
      *
      * @type {string}
      */
     resource: string;
 
     /***
-     * resource - Descriptive Identifier
+     * provider - Service(s) either Consumed or Provided
      *
      * @type {string}
      */
