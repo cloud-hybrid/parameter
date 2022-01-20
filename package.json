@@ -1,7 +1,7 @@
 {
     "name": "@cloud-technology/parameter",
     "private": false,
-    "version": "0.2.34",
+    "version": "0.2.36",
     "type": "module",
     "main": "unit-testing/index.js",
     "description": "Base Parameter Type-Interface via Node.js",
@@ -18,9 +18,10 @@
         "watch": "node unit-testing/watch",
         "build": "tsc --watch",
         "compile": "tsc",
+        "clean": "rm -rf node_modules declarations distribution .idea .vscode .eclipse",
         "upload": "npm publish --access public",
         "reinstall": "npm update && npm install --global --force",
-        "prepublishOnly": "npm install"
+        "prepublishOnly": "npm run clean && npm install --silent && npm run compile"
     },
     "dependencies": {},
     "devDependencies": {
