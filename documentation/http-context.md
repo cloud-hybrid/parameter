@@ -1,7 +1,5 @@
 # HTTP #
 
-- [ ] @Task - Create Write-Up
-
 ## Overview ##
 
 ```typescript
@@ -163,7 +161,6 @@ if (Cluster.isPrimary && Threads.isMainThread) { /// Parent Process
         /// --> Blocks given that communication through process.stdout requires a momentarily blocking state
     }
 
-
     Cluster.on("exit", (worker, code, signal) => {
         if (signal) {
             console.log("Worker (SIGKILL)" + ":", worker);
@@ -207,8 +204,7 @@ if (Cluster.isPrimary && Threads.isMainThread) { /// Parent Process
          * $ npm install --global loadtest
          * $ loadtest http://localhost:8080/api-endpoint -n 1000 -c 100
          *
-         * @note
-         * Execution via Windows is unknown, and will not be supported regardless
+         * @note Execution via Windows is unknown, and will not be supported regardless
          *
          */
 

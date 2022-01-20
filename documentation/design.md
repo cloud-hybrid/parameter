@@ -16,14 +16,10 @@ Using the cloud to ***extend local development*** is a difficult, yet fun and cr
 to perfectly establish. But globally distributed micro-services cannot be limited to a single system's local
 environment.
 
-Moreover, development that's kept only local is unrealistic and prevents teams from foreseeing issues with distributing
-their source code and preventing bad [code smell](https://en.wikipedia.org/wiki/Code_smell):
+Moreover, development that's kept only local is unrealistic and inhibits teams from foreseeing issues with distributing
+their source code, and eases their abilities to write bad [code smells](https://en.wikipedia.org/wiki/Code_smell).
 
-- Poor or Absent Logging
-- Packaging Problems
-- Black-Box Bugs
-
-Large benefits become immediately available when interfacing the cloud:
+Large benefits -- in contrast -- become immediately available when interfacing the cloud:
 
 - The potential for secrets to leak is forcefully limited
 - Debugging becomes resolvable from a single point of failure
@@ -86,8 +82,8 @@ Use-cases & examples:
 
 Programming ability rarely ever equates to skill in defining abstractions.
 
-There appear to be two distinct groups involved in software development: **abstractionists**, and their counterparts (
-whom we call **implementationists**).
+There appear to be two distinct groups involved in software development: **abstractionists**, and their counterparts 
+(whom we call **implementationists**).
 
 Abstractionists are comfortable discussing software design concepts without delving into implementation details.
 
@@ -117,11 +113,13 @@ process.
 
 In some architecture and management circles, there is an explicit policy to isolate feature developers from the system's
 maintainers. Requirements are passed second-hand through intermediaries, including architects, managers, or requirements
-analysts. This is an anti-pattern known as ***Mushroom Management***.
+analysts. This is an anti-pattern known as ***Mushroom Management***. However, in more recent years, the term ***Silo***
+has gained much more traction.
 
-Mushroom management assumes that requirements are well understood by both the development team(s) and system maintainers
-***at project inception***. It is assumed that requirements are stable. More times than not, however, the supporting
-individuals or outside stakeholders are forced to accommodate bad design(s) -- not necessarily bad code.
+Mushroom management -- or siloing -- assumes that requirements are well understood by both the development team(s) and system maintainers
+***at project inception*** even though communications were *only* provided, intentionally, to the former.
+It is additionally assumed that requirements are stable. Often the supporting individuals or outside stakeholders are 
+forced to accommodate bad design(s).
 
 Realistically, the outcome shows *unstable requirements* due to **negation of the support-related requirement(s)**.
 
