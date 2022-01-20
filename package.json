@@ -1,7 +1,7 @@
 {
     "name": "@cloud-technology/parameter",
     "private": false,
-    "version": "0.3.45",
+    "version": "0.3.61",
     "type": "module",
     "main": "unit-testing/index.js",
     "description": "Base Parameter Type-Interface via Node.js",
@@ -75,6 +75,9 @@
             "distribution",
             "node_modules"
         ]
+    },
+    "exports": {
+        ".": "./distribution/index.js"
     },
     "bin": {
         "parameter": "unit-testing/index.js"

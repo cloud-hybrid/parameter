@@ -49,7 +49,7 @@
         "diagnostics": true,
         "importHelpers": false,
         "noEmitHelpers": true,
-        "isolatedModules": false,
+        "isolatedModules": true,
         "disableSizeLimit": true,
         "extendedDiagnostics": true,
         "downlevelIteration": true,

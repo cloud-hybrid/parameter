@@ -1,6 +1,7 @@
-import Parameter from "./src"
+import { Parameter } from "./src/index.js";
+import type { Options } from "./src/index.js";
 
 export { Parameter };
-export default Parameter;
+export type { Options };
 
-export * from "./src";
+export default { Parameter };

@@ -1,4 +1,24 @@
-import { Title, Lowercase, Case } from "./train-case";
+import { Title, Lowercase, Case } from "./train-case.js";
+
+enum Type {
+    /// Directory type
+    Directory = "Directory",
+    /// Screaming-Train-Case string
+    Train = "Screaming-Train-Case",
+    /// Train-Case string
+    Dash = "Train-Case"
+}
+
+enum Properties {
+    /*** Number of Properties used with Parameter.default Constructor */
+    Default = 4,
+    /*** Number of Properties used when Negating the Identifier property, but inclusion of Provider */
+    Provider = 5,
+    /*** Number of Properties used when Negating the Provider property, but inclusion of Identifier */
+    Identifier = 5,
+    /*** Number of Properties used with a Full Parameter constructor call */
+    Parameter = 6
+}
 
 class Parameter implements Options {
     organization: string;
@@ -144,26 +164,6 @@ class Parameter implements Options {
     }
 }
 
-enum Type {
-    /// Directory type
-    Directory = "Directory",
-    /// Screaming-Train-Case string
-    Train = "Screaming-Train-Case",
-    /// Train-Case string
-    Dash = "Train-Case"
-}
-
-enum Properties {
-    /*** Number of Properties used with Parameter.default Constructor */
-    Default = 4,
-    /*** Number of Properties used when Negating the Identifier property, but inclusion of Provider */
-    Provider = 5,
-    /*** Number of Properties used when Negating the Provider property, but inclusion of Identifier */
-    Identifier = 5,
-    /*** Number of Properties used with a Full Parameter constructor call */
-    Parameter = 6
-}
-
 interface Options {
     /***
      * organization - Target Deliverable Maintainer
@@ -208,6 +208,8 @@ interface Options {
     identifier: string | null;
 }
 
-export { Parameter };
+export type { Options };
 
-export default Parameter;
+export { Parameter, Type, Properties };
+
+export default { Parameter };

@@ -1,9 +1,7 @@
-import { Parameter } from "./parameter"
+import { Parameter } from "./parameter.js";
+import type { Options } from "./parameter.js";
 
 export { Parameter };
-export * from "./parameter";
-export default await import("./parameter").then(
-    ($) => {
-        return $.Parameter;
-    }
-);
+export type { Options };
+
+export default { Parameter };
