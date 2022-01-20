@@ -17,7 +17,7 @@ As a convenience, `parameter` can be called to begin the file-watcher once succe
 ```bash
 git clone https://github.com/cloud-hybrid/parameter.git ./parameter
 cd "${_}" && npm install --silent
-parameter
+npm run compile && parameter
 ```
 
 ### Local Development ###
