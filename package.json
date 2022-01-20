@@ -1,7 +1,7 @@
 {
     "name": "@cloud-technology/parameter",
     "private": false,
-    "version": "0.2.36",
+    "version": "0.2.37",
     "type": "module",
     "main": "unit-testing/index.js",
     "description": "Base Parameter Type-Interface via Node.js",
@@ -15,6 +15,7 @@
     "author": "Jacob B. Sanders",
     "scripts": {
         "test": "node unit-testing",
+        "start": "node unit-testing/watch",
         "watch": "node unit-testing/watch",
         "build": "tsc --watch",
         "compile": "tsc",

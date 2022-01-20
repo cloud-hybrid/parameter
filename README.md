@@ -5,12 +5,13 @@
 | Package Script | NPM Command Invocation | Description                                     |
 |----------------|------------------------|-------------------------------------------------|
 | **test**       | `npm test`             | Unit-Test the Distribution                      |
+| **start**      | `npm start`            | Alias for `npm run watch`                       |
 | **watch**      | `npm run watch`        | Unit-Test Upon File-System Change(s)            |
 | **build**      | `npm run build`        | Compile Distribution Upon File-System Change(s) |
 | **compile**    | `npm run compile`      | Compile Distribution                            |
 | **upload**     | `npm run upload`       | Deploy Package to NPM Registry                  |
 
-As a convenience, `parameter` can be called to begin the file-watcher once successfully installed.
+As a convenience, `parameter` can be called to unit-test once successfully installed.
 
 **Example**
 
