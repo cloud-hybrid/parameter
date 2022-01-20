@@ -68,9 +68,12 @@
         ]
     },
     "exclude": [
-        "**/*.d.ts"
+        "**/*.d.ts",
+        "distribution"
     ],
     "include": [
-        "**/*.ts"
+        "**/*.ts",
+        "**/*.js",
+        "**/*.cjs"
     ]
 }

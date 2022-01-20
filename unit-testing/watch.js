@@ -1,12 +1,15 @@
-import OS from "os";
 import Path from "path";
 import Process from "process";
 import Subprocess from "child_process";
 
-const User = OS.userInfo({ encoding: "utf-8" });
+const CWD = Process.cwd();
 
-const Jest = Path.join(User.homedir, ".npm", "_npx", "node_modules", "jest", "bin", "jest.js");
+Process.chdir(Path.dirname(Path.join(import.meta.url.replace("file://", ""), "..")));
 
-Subprocess.execSync(["node", "--experimental-vm-modules", Jest, "--watch"].join(" "), { stdio: "inherit" });
+Process.stdout.write("\n");
 
-process.exit(0);
+Subprocess.execSync(["node", "--experimental-vm-modules", "$(command -v jest)", "--passWithNoTests", "--config", Process.cwd() + Path.sep + "*.cjs", "--watch"].join(" "), { stdio: "inherit" });
+
+Process.chdir(CWD);
+
+Process.exit(0);

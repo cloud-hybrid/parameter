@@ -10,13 +10,7 @@ Process.chdir(Path.dirname(Path.join(import.meta.url.replace("file://", ""), "..
 
 Process.stdout.write("\n");
 
-Subprocess.execSync(["npm", "install", "--global", "--no-audit", "--no-fund", "--silent", "@types/jest"].join(" "), { stdio: "inherit" });
-Subprocess.execSync(["npm", "install", "--global", "--no-audit", "--no-fund", "--silent", "jest@latest"].join(" "), { stdio: "inherit" });
-Subprocess.execSync(["npm", "install", "--global", "--no-audit", "--no-fund", "--silent", "ts-node@latest"].join(" "), { stdio: "inherit" });
-Subprocess.execSync(["npm", "install", "--global", "--no-audit", "--no-fund", "--silent", "ts-jest@latest"].join(" "), { stdio: "inherit" });
-Subprocess.execSync(["npm", "install", "--global", "--no-audit", "--no-fund", "--silent", "node-notifier@latest"].join(" "), { stdio: "inherit" });
-
-Subprocess.execSync(["node", "--experimental-vm-modules", "node_modules/.bin/jest"].join(" "), { stdio: "inherit" });
+Subprocess.execSync(["node", "--experimental-vm-modules", "$(command -v jest)", "--passWithNoTests", "--config", Process.cwd() + Path.sep + "*.cjs"].join(" "), { stdio: "inherit" });
 
 Process.chdir(CWD);
 

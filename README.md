@@ -10,7 +10,15 @@
 | **compile**    | `npm run compile`      | Compile Distribution                            |
 | **upload**     | `npm run upload`       | Deploy Package to NPM Registry                  |
 
-test watch build compile upload reinstall prepublishOnly
+As a convenience, `parameter` can be called to begin the file-watcher once successfully installed.
+
+**Example**
+
+```bash
+git clone https://github.com/cloud-hybrid/parameter.git ./parameter
+cd "${_}" && npm install --silent
+parameter
+```
 
 ### Local Development ###
 
@@ -25,5 +33,7 @@ test watch build compile upload reinstall prepublishOnly
     ```
 3. Test
     ```bash
-    npm test
+    npm run watch
     ```
+
+Lastly, continue with development.

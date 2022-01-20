@@ -1,6 +1,5 @@
-/** @type {import("ts-jest/dist/types").InitialOptionsTsJest} */
-const Jest = {
-
+module.exports = {
+    verbose: false,
     // All imported modules in your tests should be mocked automatically
     // automock: false,
 
@@ -11,7 +10,7 @@ const Jest = {
     // cacheDirectory: "/private/var/folders/z_/v03l33d55fb57nrr3b1q03ch0000gq/T/jest_dz",
 
     // Automatically clear mock calls and instances between every test
-    clearMocks: true,
+    // clearMocks: ,
 
     // Indicates whether the coverage information should be collected while executing the test
     // collectCoverage: false,
@@ -32,23 +31,23 @@ const Jest = {
 
     // A list of reporter names that Jest uses when writing coverage reports
     coverageReporters: [
-      "json",
-      "text",
-      "lcov",
-      "clover"
+        "json",
+        "text",
+        "lcov",
+        "clover"
     ],
 
     // An object that configures minimum threshold enforcement for coverage results
     coverageThreshold: undefined,
 
     // A path to a custom dependency extractor
-    dependencyExtractor: undefined,
+    // dependencyExtractor: undefined,
 
     // Make calling deprecated APIs throw helpful error messages
     errorOnDeprecated: true,
 
     // Force coverage collection from ignored files using an array of glob patterns
-    forceCoverageMatch: [],
+    // forceCoverageMatch: [],
 
     // A path to a module which exports an async function that is triggered once before all test suites
     globalSetup: undefined,
@@ -57,10 +56,10 @@ const Jest = {
     globalTeardown: undefined,
 
     // A set of global variables that need to be available in all test environments
-    globals: {},
+    // globals: {},
 
     // The maximum amount of workers used to run your tests. Can be specified as % or a number. E.g. maxWorkers: 10% will use 10% of your CPU amount + 1 as the maximum worker number. maxWorkers: 2 will use a maximum of 2 workers.
-    maxWorkers: "50%",
+    maxWorkers: 50,
 
     // An array of directory names to be searched recursively up from the requiring module's location
     // moduleDirectories: [
@@ -68,7 +67,7 @@ const Jest = {
     // ],
 
     // An array of file extensions your modules use
-    moduleFileExtensions: ["ts", "js", "json", "node"],
+    // moduleFileExtensions: ["ts", "js", "json", "node"],
 
     // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
     // moduleNameMapper: {},
@@ -83,6 +82,7 @@ const Jest = {
     notifyMode: "always",
 
     // A preset that is used as a base for Jest's configuration
+    // @ts-ignore
     preset: "ts-jest",
 
     // Run tests from one or more projects
@@ -141,7 +141,7 @@ const Jest = {
     ],
 
     // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-    testPathIgnorePatterns: ["node_modules"]
+    /// testPathIgnorePatterns: ["node_modules"]
 
     // The regexp pattern or array of patterns that Jest uses to detect test files
     // testRegex: [],
@@ -178,6 +178,4 @@ const Jest = {
 
     // Whether to use watchman for file crawling
     // watchman: true,
-};
-
-module.exports = Jest;
+}
