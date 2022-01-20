@@ -16,7 +16,6 @@ Subprocess.execSync(["npm", "install", "--global", "--no-audit", "--no-fund", "-
 Subprocess.execSync(["npm", "install", "--global", "--no-audit", "--no-fund", "--silent", "ts-jest@latest"].join(" "), { stdio: "inherit" });
 Subprocess.execSync(["npm", "install", "--global", "--no-audit", "--no-fund", "--silent", "node-notifier@latest"].join(" "), { stdio: "inherit" });
 
-Subprocess.execSync(["npm", "install", "--global", "--no-audit", "--no-fund", "--silent", "."].join(" "), { stdio: "inherit" });
 Subprocess.execSync(["node", "--experimental-vm-modules", "node_modules/.bin/jest"].join(" "), { stdio: "inherit" });
 
 Process.chdir(CWD);
