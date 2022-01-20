@@ -1,0 +1,86 @@
+{
+    "name": "@cloud-technology/parameter",
+    "private": false,
+    "version": "0.2.24",
+    "type": "module",
+    "main": "index.js",
+    "description": "Base Parameter Type-Interface via Node.js",
+    "types": "distribution",
+    "repository": {
+        "type": "git",
+        "directory": ".",
+        "url": "https://github.com/cloud-hybrid/parameter.git"
+    },
+    "license": "BSD 1-Clause License",
+    "author": "Jacob B. Sanders",
+    "scripts": {
+        "test": "node unit-testing",
+        "watch": "node unit-testing/watch",
+        "build": "tsc --watch",
+        "compile": "tsc",
+        "upload": "npm publish --access public",
+        "reinstall": "npm update && npm install --global --force",
+        "prepublishOnly": "npm install"
+    },
+    "peerDependencies": {
+        "jest": "latest"
+    },
+    "devDependencies": {
+        "@cloud-technology/parameter": "cloud-hybrid/parameter#Development",
+        "@jest/globals": "latest",
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@typescript-eslint/eslint-plugin": "latest",
+        "@typescript-eslint/experimental-utils": "latest",
+        "@typescript-eslint/parser": "latest",
+        "@typescript-eslint/scope-manager": "latest",
+        "@typescript-eslint/type-utils": "latest",
+        "@typescript-eslint/typescript-estree": "latest",
+        "jest": "latest",
+        "eslint": "latest",
+        "node-notifier": "latest",
+        "ts-jest": "latest",
+        "ts-node": "latest",
+        "tslib": "latest",
+        "typescript": "latest",
+        "typescript-eslint-language-service": "latest"
+    },
+    "optionalDependencies": {
+        "@cloud-technology/parameter": "@cloud-technology/parameter"
+    },
+    "eslintConfig": {
+        "parser": "@typescript-eslint/parser",
+        "plugins": [
+            "@typescript-eslint"
+        ],
+        "extends": [
+            "eslint:recommended",
+            "plugin:@typescript-eslint/eslint-recommended",
+            "plugin:@typescript-eslint/recommended"
+        ],
+        "rules": {
+            "no-case-declarations": 0,
+            "@typescript-eslint/no-explicit-any": 0,
+            "@typescript-eslint/explicit-function-return-type": 0,
+            "@typescript-eslint/no-use-before-define": 0,
+            "@typescript-eslint/no-empty-interface": 0,
+            "@typescript-eslint/explicit-module-boundary-types": 0,
+            "@typescript-eslint/no-empty-function": 0,
+            "@typescript-eslint/no-unused-vars": 0,
+            "@typescript-eslint/no-inferrable-types": 0,
+            "@typescript-eslint/ban-types": 0,
+            "@typescript-eslint/ban-ts-comment": 0,
+            "no-sequences": "error"
+        },
+        "ignorePatterns": [
+            "ci",
+            "dist",
+            "coverage",
+            "distribution",
+            "node_modules"
+        ]
+    },
+    "bin": {
+        "cloud-technology-parameter-unit-testing": "unit-testing/index.js"
+    }
+}
