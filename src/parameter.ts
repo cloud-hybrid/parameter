@@ -144,8 +144,7 @@ class Parameter implements Options {
     }
 }
 
-
-export enum Type {
+enum Type {
     /// Directory type
     Directory = "Directory",
     /// Screaming-Train-Case string
@@ -154,7 +153,7 @@ export enum Type {
     Dash = "Train-Case"
 }
 
-export enum Properties {
+enum Properties {
     /*** Number of Properties used with Parameter.default Constructor */
     Default = 4,
     /*** Number of Properties used when Negating the Identifier property, but inclusion of Provider */
@@ -165,7 +164,7 @@ export enum Properties {
     Parameter = 6
 }
 
-export interface Options {
+interface Options {
     /***
      * organization - Target Deliverable Maintainer
      *
