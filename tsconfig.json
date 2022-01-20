@@ -7,7 +7,7 @@
         "emitBOM": true,
         "incremental": true,
         "inlineSourceMap": false,
-        "noEmitOnError": false,
+        "noEmitOnError": true,
         "listEmittedFiles": true,
         "listFilesOnly": false,
         "noFallthroughCasesInSwitch": true,
@@ -35,7 +35,7 @@
             "ES2019",
             "ES2020",
             "ES2021",
-            "ESNext", "dom"
+            "ESNext"
         ],
         "module": "ESNext",
         "moduleResolution": "Node",
@@ -47,8 +47,8 @@
         "target": "ES2018",
         "composite": true,
         "diagnostics": true,
-        "importHelpers": false,
-        "noEmitHelpers": true,
+        "importHelpers": true,
+        "noEmitHelpers": false,
         "isolatedModules": true,
         "disableSizeLimit": true,
         "extendedDiagnostics": true,
@@ -69,6 +69,7 @@
     },
     "exclude": [
         "**/*.d.ts",
+        "coverage",
         "distribution"
     ],
     "include": [

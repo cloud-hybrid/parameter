@@ -15,13 +15,13 @@ export default {
     // clearMocks: ,
 
     // Indicates whether the coverage information should be collected while executing the test
-    // collectCoverage: false,
+    collectCoverage: true,
 
     // An array of glob patterns indicating a set of files for which coverage information should be collected
     // collectCoverageFrom: undefined,
 
     // The directory where Jest should output its coverage files
-    // coverageDirectory: undefined,
+    coverageDirectory: "coverage",
 
     // An array of regexp pattern strings used to skip coverage collection
     // coveragePathIgnorePatterns: [
@@ -64,9 +64,9 @@ export default {
     maxWorkers: OS.cpus().length,
 
     // An array of directory names to be searched recursively up from the requiring module's location
-    moduleDirectories: [
-        "node_modules"
-    ],
+    /// moduleDirectories: [
+    ///     "node_modules"
+    /// ],
 
     // An array of file extensions your modules use
     moduleFileExtensions: [ "ts", "js", "json", "node" ],
@@ -97,7 +97,7 @@ export default {
     // resetMocks: false,
 
     // Reset the module registry before running each individual test
-    // resetModules: false,
+    resetModules: true,
 
     // A path to a custom resolver
     // resolver: undefined,

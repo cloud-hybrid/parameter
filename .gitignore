@@ -18,6 +18,8 @@ declarations
 declarations/*
 declarations/**
 
+coverage
+
 .terraform/*
 
 *.tfstate
