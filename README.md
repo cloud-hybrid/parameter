@@ -1,5 +1,7 @@
 # `@cloud-technology/parameter` #
 
+*Base Parameter Type-Interface via Node.js*
+
 ## Usage ##
 
 | Package Script | NPM Command Invocation | Description                                     |
