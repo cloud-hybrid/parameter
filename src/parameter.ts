@@ -1,4 +1,4 @@
-import { Title, Lowercase, Case } from "./train-case.js";
+import { Title, Case } from "./train-case.js";
 
 enum Type {
     /// Directory type
@@ -21,14 +21,47 @@ enum Properties {
 }
 
 class Parameter implements Options {
+    /***
+     * organization - Target Deliverable Maintainer
+     *
+     * @type {string}
+     */
     organization: string;
+
+    /***
+     * environment - Network (L2) Seperated Alias
+     *
+     * @type {string}
+     */
     environment: string;
+
+    /***
+     * application - Stack, Functional Purpose, or Common-Name
+     *
+     * @type {string}
+     */
     application: string;
 
+    /***
+     * resource - Descriptive Identifier
+     *
+     * @type {string}
+     */
     resource: string;
 
-    provider: string | null = null;
-    identifier: string | null = null;
+    /***
+     * provider - Service(s) either Consumed or Provided
+     *
+     * @type {string|null|undefined}
+     */
+    provider?: string | null | undefined = null;
+
+    /***
+     * identifier - Additional, Optional String
+     *
+     * @type {string|null|undefined}
+     */
+    identifier?: string | null | undefined = null;
 
     properties: Properties;
 
@@ -78,6 +111,7 @@ class Parameter implements Options {
      * @constructor
      *
      * @returns {Options}
+     *
      */
     public format(): Options {
         return {
@@ -90,77 +124,185 @@ class Parameter implements Options {
         };
     }
 
-    public string(type: Type|string = Type.Directory) {
-        switch (this.properties) {
-            case Properties.Provider || Properties.Identifier: {
-                const $ = [
+    /***
+     * Evaluate the instantiated Parameter type according to the number
+     * of total attributes -- return a generated string.
+     *
+     * @constructor
+     * @type {Function}
+     * @return {String}
+     *
+     */
+    public string(type: Type | string = Type.Directory): string {
+        /***
+         * If the constructor instantiated a Parameter type with the following attributes:
+         * - `organization`
+         * - `environment`
+         * - `application`
+         * - `resource`
+         *
+         * then construct a string, first joining an array for the initialized attributes,
+         * according to either a `"Directory"`, `"Train-Case"`, or `"Screaming-Train-Case"`
+         * string convention.
+         *
+         * @type {string}
+         *
+         */
+        if ( this.properties === 4 ) {
+            /***
+             * A temporary variable used to construct a string according
+             * to the `"Type"` and `"Property"` enumeration.
+             *
+             * @type {string}
+             */
+            const property: string = [
+                this.organization,
+                this.environment,
+                this.application,
+                this.resource
+            ].join( (type === "Directory")
+                ? "/" : (type === "Screaming-Train-Case")
+                    ? "-" : "/"
+            );
+
+            /***
+             * String cast to user-defined convention of one of the following:
+             * - Directory = "Directory",
+             * - Train = "Screaming-Train-Case",
+             * - Dash = "Train-Case"
+             *
+             * @type {string}
+             */
+            const cast: string = Case( property, { condense: false } );
+
+            /*** Return a potentially titled string, capitalizing according to type */
+            return (type === "Screaming-Train-Case") ? Title( cast )
+                : (type === "Train-Case") ? cast
+                    : property;
+        }
+
+        /***
+         * If the constructor instantiated a Parameter type with the following attributes:
+         * - `organization`
+         * - `environment`
+         * - `application`
+         * - `resource`
+         * - `provider` *or* `identifier`
+         *
+         * then construct a string, first joining an array for the initialized attributes,
+         * according to either a `"Directory"`, `"Train-Case"`, or `"Screaming-Train-Case"`
+         * string convention.
+         *
+         * @type {string}
+         *
+         */
+        else {
+            if ( this.properties === 5 ) {
+                /***
+                 * A temporary variable used to construct a string according
+                 * to the `"Type"` and `"Property"` enumeration.
+                 *
+                 * @type {string}
+                 */
+                const property: string = [
                     this.organization,
                     this.environment,
                     this.application,
                     this.resource,
 
-                    this.provider ?? this.identifier,
-                ].join((type === "Directory")
+                    this.provider ?? this.identifier
+                ].join( (type === "Directory")
                     ? "/" : (type === "Screaming-Train-Case")
                         ? "-" : "/"
                 );
 
-                const cast = Case($, {condense: false});
-                return (type === "Screaming-Train-Case") ? Title(cast)
+                /***
+                 * String cast to user-defined convention of one of the following:
+                 * - Directory = "Directory",
+                 * - Train = "Screaming-Train-Case",
+                 * - Dash = "Train-Case"
+                 *
+                 * @type {string}
+                 */
+                const cast: string = Case( property, { condense: false } );
+
+                /*** Return a potentially titled string, capitalizing according to type */
+                return (type === "Screaming-Train-Case") ? Title( cast )
                     : (type === "Train-Case") ? cast
-                        : $;
+                        : property;
             }
 
-            case Properties.Parameter: {
-                const $ = [
-                    this.organization,
-                    this.environment,
-                    this.application,
-                    this.resource,
 
-                    this.provider,
-                    this.identifier,
-                ].join((type === "Directory")
-                    ? "/" : (type === "Screaming-Train-Case")
-                        ? "-" : "/"
-                );
+            /***
+             * If the constructor instantiated a Parameter type with the following attributes:
+             * - `organization`
+             * - `environment`
+             * - `application`
+             * - `resource`
+             * - `provider`
+             * - `identifier`
+             *
+             * then construct a string, first joining an array for the initialized attributes,
+             * according to either a `"Directory"`, `"Train-Case"`, or `"Screaming-Train-Case"`
+             * string convention.
+             *
+             * @type {string}
+             *
+             */
+            else {
+                if ( this.properties === 6 ) {
+                    /***
+                     * A temporary variable used to construct a string according
+                     * to the `"Type"` and `"Property"` enumeration.
+                     *
+                     * @type {string}
+                     */
+                    const property: string = [
+                        this.organization,
+                        this.environment,
+                        this.application,
+                        this.resource,
 
-                const cast = Case($, {condense: false});
-                return (type === "Screaming-Train-Case") ? Title(cast)
-                    : (type === "Train-Case") ? cast
-                        : $;
-            }
+                        this.provider,
+                        this.identifier
+                    ].join( (type === "Directory")
+                        ? "/" : (type === "Screaming-Train-Case")
+                            ? "-" : "/"
+                    );
 
-            case Properties.Default: {
-                const $ = [
-                    this.organization,
-                    this.environment,
-                    this.application,
-                    this.resource
-                ].join((type === "Directory")
-                    ? "/" : (type === "Screaming-Train-Case")
-                        ? "-" : "/"
-                );
+                    /***
+                     * String cast to user-defined convention of one of the following:
+                     * - Directory = "Directory",
+                     * - Train = "Screaming-Train-Case",
+                     * - Dash = "Train-Case"
+                     *
+                     * @type {string}
+                     */
+                    const cast: string = Case( property, { condense: false } );
 
-                const cast = Case($, {condense: false});
-                return (type === "Screaming-Train-Case") ? Title(cast)
-                    : (type === "Train-Case") ? cast
-                        : $;
+                    /*** Return a potentially titled string, capitalizing according to type */
+                    return (type === "Screaming-Train-Case") ? Title( cast )
+                        : (type === "Train-Case") ? cast
+                            : property;
+                }
+
+                /*** Escape Hatch for Code Coverage */
+
+                return JSON.stringify( this.format(), null, 4 );
             }
         }
     }
 
     /***
+     * Enumeration Evaluation
+     * ---
      *
-     * @protected
+     * @public
      * @summary
-     * @returns {Properties|{4, 5, 5, 6}}
+     * @returns {Properties}
      */
-    protected enumerations(): Properties {
-        return (this.provider && this.identifier) ? 6
-            : (this.provider && !this.identifier) ? 5
-                : (this.identifier && !this.provider) ? 5
-                    : 4;
+    public enumerations(): Properties {
+        return (this.provider && this.identifier) ? Properties.Parameter : (this.provider) ? Properties.Provider : (this.identifier) ? Properties.Identifier : Properties.Default;
     }
 }
 
@@ -196,16 +338,16 @@ interface Options {
     /***
      * provider - Service(s) either Consumed or Provided
      *
-     * @type {string}
+     * @type {string|null|undefined}
      */
-    provider: string | null;
+    provider?: string | null | undefined;
 
     /***
      * identifier - Additional, Optional String
      *
-     * @type {string}
+     * @type {string|null|undefined}
      */
-    identifier: string | null;
+    identifier?: string | null | undefined;
 }
 
 export type { Options };

@@ -14,11 +14,12 @@ describe( "Unit Test", () => {
 
     console.log("Instance", Utility.inspect(parameter, { colors: true }));
 
-    it("environment", () => expect(parameter).toHaveProperty("environment"));
-    it("application", () =>expect(parameter).toHaveProperty("application"));
-    it("resource", () => expect(parameter).toHaveProperty("resource"));
-    it("provider", () => expect(parameter).toHaveProperty("provider"));
-    it("identifier", () => expect(parameter).toHaveProperty("identifier"));
+    it("Environment", () => expect(parameter).toHaveProperty("environment"));
+    it("Application", () =>expect(parameter).toHaveProperty("application"));
+    it("Resource", () => expect(parameter).toHaveProperty("resource"));
+    it("Provider", () => expect(parameter).toHaveProperty("provider"));
+    it("Identifier", () => expect(parameter).toHaveProperty("identifier"));
+
 
     it("module", async () => {
         const Import = await import("./../src/index");

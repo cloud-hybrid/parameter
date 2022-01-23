@@ -48,10 +48,10 @@
  *
  */
 
-import { Parameter } from "./src/index.js";
+import { Parameter, Properties, Type } from "./src/index.js";
 import type { Options } from "./src/index.js";
 
-export { Parameter };
+export { Parameter, Properties, Type };
 export type { Options };
 
-export default { Parameter };
+export default { Parameter, Properties, Type };
