@@ -4,9 +4,9 @@
  * @example
  * /// Node, CommonJS Usage
  * const Main = async () => {
- *     const Type = await import("@cloud-technology/parameter");
+ *     const { Parameter } = await import("@cloud-technology/parameter");
  *
- *     const instance = new Type.Parameter({
+ *     const instance = new Parameter({
  *         organization: "IBM",
  *         environment: "Development",
  *         application: "Application",
@@ -16,12 +16,12 @@
  *     });
  *
  *     console.log(instance);
+ *
  *     console.log(instance.string());
  *
  *     console.log(instance.string("Directory"));
  *     console.log(instance.string("Train-Case"));
  *     console.log(instance.string("Screaming-Train-Case"));
- *
  * }
  *
  * (async () => await Main())();
@@ -54,4 +54,4 @@ import type { Options } from "./src/index.js";
 export { Parameter, Properties, Type };
 export type { Options };
 
-export default { Parameter, Properties, Type };
+export default Parameter;
