@@ -78,10 +78,10 @@ export default {
     // modulePathIgnorePatterns: [],
 
     // Activates notifications for test results
-    notify: true,
+    // notify: true,
 
     // An enum that specifies notification mode. Requires { notify: true }
-    notifyMode: "always",
+    // notifyMode: "always",
 
     // A preset that is used as a base for Jest's configuration
     // @ts-ignore

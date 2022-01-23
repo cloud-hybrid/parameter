@@ -1,7 +1,7 @@
 {
     "name": "@cloud-technology/parameter",
     "private": false,
-    "version": "0.4.101",
+    "version": "0.4.103",
     "type": "module",
     "main": "unit-testing/index.js",
     "description": "Base Parameter Type-Interface via Node.js",
@@ -42,12 +42,6 @@
         "tslib": "latest",
         "typescript": "latest",
         "typescript-eslint-language-service": "latest"
-    },
-    "peerDependencies": {
-        "doctoc": "latest"
-    },
-    "optionalDependencies": {
-        "node-notifier": "latest"
     },
     "eslintConfig": {
         "parser": "@typescript-eslint/parser",
