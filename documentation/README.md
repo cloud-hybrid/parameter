@@ -22,7 +22,7 @@ the current state of the process.
 
 ### Variables ###
 
-The `package.json` fields are tacked onto the npm_package_ prefix. So, for instance,
+The `package.json` fields are tacked onto the `npm_package_*` prefix. So, for instance,
 if `{"name":"foo", "version":"1.2.5"}` is established in the `package.json` file, then the package scripts would have
 the `npm_package_name` environment variable set to `"foo"`, and the `npm_package_version` set to `"1.2.5"`. Users can
 access these variables in code with `process.env.npm_package_name`, and `process.env.npm_package_version`, and so on for

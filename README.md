@@ -15,7 +15,21 @@ pattern to further extend from; examples of applicable extensions include usages
 - Microsoft Cloud Vault
 - GCP Credential Management 
 
+## Table of Contents ##
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [Usage](#usage)
+  - [Development](#development)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Usage ##
+
+`@cloud-technology/parameter` uses the latest Node.js LTS version; to quickly enable, run `nvm use`.
+
+- See [installation guide](https://github.com/nvm-sh/nvm#about) for a quick walk-through on installing `nvm`.
 
 | Package Script | NPM Command Invocation | Description                                     |
 |----------------|------------------------|-------------------------------------------------|
@@ -26,7 +40,7 @@ pattern to further extend from; examples of applicable extensions include usages
 | **compile**    | `npm run compile`      | Compile Distribution                            |
 | **upload**     | `npm run upload`       | Deploy Package to NPM Registry                  |
 
-### Local Development ###
+### Development ###
 
 **Recommended** - Testing Mode
 
@@ -48,3 +62,7 @@ Locally developing with `jest` file-watchers helps ensure non-breaking change ar
 Lastly, continue with development.
 
 For alternative build & unit-testing commands, please refer to the [commands list](#usage).
+
+## Documentation ##
+
+Please see [documentation](./documentation) for additional information and reference(s).

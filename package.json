@@ -1,7 +1,7 @@
 {
     "name": "@cloud-technology/parameter",
     "private": false,
-    "version": "0.4.96",
+    "version": "0.4.101",
     "type": "module",
     "main": "unit-testing/index.js",
     "description": "Base Parameter Type-Interface via Node.js",
@@ -11,7 +11,7 @@
         "directory": ".",
         "url": "https://github.com/cloud-hybrid/parameter.git"
     },
-    "license": "BSD 1-Clause License",
+    "license": "BSD-2-Clause",
     "author": "Jacob B. Sanders",
     "scripts": {
         "test": "node unit-testing",
@@ -21,15 +21,14 @@
         "clean": "rm -rf node_modules declarations distribution coverage .idea .vscode .eclipse package-lock.json",
         "upload": "npm publish --access public",
         "reinstall": "npm update && npm install --global --force",
-        "prepublishOnly": "npm run clean && npm install --silent && tsc && npm run test"
+        "prepublishOnly": "npm run clean && npm install --silent && tsc && npm run test",
+        "documentation": "doctoc README.md --github &>/dev/null"
     },
     "dependencies": {},
     "devDependencies": {
-        "@types/node": "latest",
         "@jest/globals": "latest",
         "@types/jest": "latest",
-        "jest": "latest",
-        "ts-jest": "latest",
+        "@types/node": "latest",
         "@typescript-eslint/eslint-plugin": "latest",
         "@typescript-eslint/experimental-utils": "latest",
         "@typescript-eslint/parser": "latest",
@@ -37,10 +36,15 @@
         "@typescript-eslint/type-utils": "latest",
         "@typescript-eslint/typescript-estree": "latest",
         "eslint": "latest",
+        "jest": "latest",
+        "ts-jest": "latest",
         "ts-node": "latest",
         "tslib": "latest",
         "typescript": "latest",
         "typescript-eslint-language-service": "latest"
+    },
+    "peerDependencies": {
+        "doctoc": "latest"
     },
     "optionalDependencies": {
         "node-notifier": "latest"
