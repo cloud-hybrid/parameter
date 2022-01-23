@@ -6,7 +6,14 @@ Parameters often used during configuration can be a difficult concept to standar
 
 `@cloud-technology/parameter` aims to strictly define a naming and constructor convention
 to ease efforts associated with configuration, while allowing for an easy inheritance
-pattern to further extend from.
+pattern to further extend from; examples of applicable extensions include usages with:
+
+- `etcd`
+- Hashicorp's `vault`
+- AWS Secure Systems Manager
+- AWS Secrets Manager
+- Microsoft Cloud Vault
+- GCP Credential Management 
 
 ## Usage ##
 
@@ -19,30 +26,25 @@ pattern to further extend from.
 | **compile**    | `npm run compile`      | Compile Distribution                            |
 | **upload**     | `npm run upload`       | Deploy Package to NPM Registry                  |
 
-As a convenience, `parameter` can be called to unit-test once successfully installed.
-
-**Example**
-
-```bash
-git clone https://github.com/cloud-hybrid/parameter.git ./parameter
-cd "${_}" && npm install --silent
-npm run compile && parameter
-```
-
 ### Local Development ###
 
-1. Install
+**Recommended** - Testing Mode
+
+Locally developing with `jest` file-watchers helps ensure non-breaking change are introduced.
+
+1. Install Dependencies
     ```bash
     npm install --quiet
     ```
-2. Build or Compile
-    - **Compile**: `npm run compile`
+2. Build `*.ts` File(s), Enabling TSC File-Watching
     ```bash
     npm run build
     ```
-3. Test
+3. Open an Additional TTY and Run 
     ```bash
-    npm run watch
+    npm run start
     ```
 
 Lastly, continue with development.
+
+For alternative build & unit-testing commands, please refer to the [commands list](#usage).
