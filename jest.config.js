@@ -1,15 +1,14 @@
 import OS from "os";
 
 export default {
-    verbose: false,
     // All imported modules in your tests should be mocked automatically
-    // automock: false,
+    automock: false,
 
     // Stop running tests after `n` failures
     // bail: 0,
 
     // The directory where Jest should store its cached dependency information
-    // cacheDirectory: "/private/var/folders/z_/v03l33d55fb57nrr3b1q03ch0000gq/T/jest_dz",
+    // cacheDirectory: undefined,
 
     // Automatically clear mock calls and instances between every test
     // clearMocks: ,
@@ -35,12 +34,13 @@ export default {
     coverageReporters: [
         "json",
         "text",
+        "html",
         "lcov",
         "clover"
     ],
 
     // An object that configures minimum threshold enforcement for coverage results
-    coverageThreshold: undefined,
+    // coverageThreshold: undefined,
 
     // A path to a custom dependency extractor
     // dependencyExtractor: undefined,
@@ -52,10 +52,10 @@ export default {
     // forceCoverageMatch: [],
 
     // A path to a module which exports an async function that is triggered once before all test suites
-    globalSetup: undefined,
+    // globalSetup: undefined,
 
     // A path to a module which exports an async function that is triggered once after all test suites
-    globalTeardown: undefined,
+    // globalTeardown: undefined,
 
     // A set of global variables that need to be available in all test environments
     // globals: {},
@@ -64,9 +64,9 @@ export default {
     maxWorkers: OS.cpus().length,
 
     // An array of directory names to be searched recursively up from the requiring module's location
-    /// moduleDirectories: [
-    ///     "node_modules"
-    /// ],
+     moduleDirectories: [
+        "node_modules"
+     ],
 
     // An array of file extensions your modules use
     moduleFileExtensions: [ "ts", "js", "json", "node" ],
@@ -140,7 +140,7 @@ export default {
     // The glob patterns Jest uses to detect test files
     testMatch: [
         "**/distribution/unit-testing/**/*.test.js"
-    ]
+    ],
 
     // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
     /// testPathIgnorePatterns: ["node_modules"]
@@ -173,11 +173,11 @@ export default {
     // unmockedModulePathPatterns: undefined,
 
     // Indicates whether each individual test should be reported during the run
-    // verbose: undefined,
+    verbose: true,
 
     // An array of regexp patterns that are matched against all source file paths before re-running tests in watch mode
-    // watchPathIgnorePatterns: [],
+    watchPathIgnorePatterns: [],
 
     // Whether to use watchman for file crawling
-    // watchman: true,
+    watchman: true,
 };

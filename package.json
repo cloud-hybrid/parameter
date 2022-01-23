@@ -1,7 +1,7 @@
 {
     "name": "@cloud-technology/parameter",
     "private": false,
-    "version": "0.3.69",
+    "version": "0.3.72",
     "type": "module",
     "main": "unit-testing/index.js",
     "description": "Base Parameter Type-Interface via Node.js",
@@ -15,10 +15,10 @@
     "author": "Jacob B. Sanders",
     "scripts": {
         "test": "node unit-testing",
-        "watch": "node unit-testing/watch",
+        "start": "node unit-testing/watch",
         "build": "tsc --watch",
-        "compile": "tsc",
-        "clean": "rm -rf node_modules declarations distribution coverage .idea .vscode .eclipse",
+        "compile": "tsc && node unit-testing",
+        "clean": "rm -rf node_modules declarations distribution coverage .idea .vscode .eclipse package-lock.json",
         "upload": "npm publish --access public",
         "reinstall": "npm update && npm install --global --force",
         "prepublishOnly": "npm run clean && npm install --silent && tsc && npm run test"
@@ -68,9 +68,8 @@
             "no-sequences": "error"
         },
         "ignorePatterns": [
-            "ci",
-            "dist",
             "coverage",
+            "declarations",
             "distribution",
             "node_modules"
         ]
