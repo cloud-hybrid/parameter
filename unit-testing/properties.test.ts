@@ -21,7 +21,7 @@ describe( "Unit Test", () => {
     it("Identifier", () => expect(parameter).toHaveProperty("identifier"));
 
 
-    it("module", async () => {
+    it("Module", async () => {
         const Import = await import("./../src/index");
 
         expect(Import).toHaveProperty("Parameter");

@@ -121,8 +121,8 @@ class Parameter implements Options {
      * | **Organization** |   *Required*   |                    ...                    |            `IBM`            |
      * | **Environment**  |   *Required*   |       Network (L2) Seperated Alias        | `Development`, `Production` |
      * | **Application**  |   *Required*   | Stack, Functional Purpose, or Common-Name |  `Financial-Audit-Service`  |
-     * |   **Provider**   |   *Optional*   |  Service(s) either Consumed or Provided   |     `S3`, `EC2`, `CFN`      |
      * |   **Resource**   |   *Required*   |          Descriptive Identifier           | `Log-Results`. `Artifacts`  |
+     * |   **Provider**   |   *Optional*   |  Service(s) either Consumed or Provided   |     `S3`, `EC2`, `CFN`      |
      * |  **Identifier**  |   *Optional*   |        Additional, Optional String        |   `VPC-ID`, `Private-Key`   |
      *
      * @param {Options} options - Constructor parameters type
@@ -272,31 +272,24 @@ class Parameter implements Options {
                         : property;
             }
 
-
-            /***
-             * If the constructor instantiated a Parameter type with the following attributes:
-             * - `organization`
-             * - `environment`
-             * - `application`
-             * - `resource`
-             * - `provider`
-             * - `identifier`
-             *
-             * then construct a string, first joining an array for the initialized attributes,
-             * according to either a `"Directory"`, `"Train-Case"`, or `"Screaming-Train-Case"`
-             * string convention.
-             *
-             * @type {string}
-             *
-             */
             else {
+                /***
+                 * If the constructor instantiated a Parameter type with the following attributes:
+                 * - `organization`
+                 * - `environment`
+                 * - `application`
+                 * - `resource`
+                 * - `provider`
+                 * - `identifier`
+                 *
+                 * then construct a string, first joining an array for the initialized attributes,
+                 * according to either a `"Directory"`, `"Train-Case"`, or `"Screaming-Train-Case"`
+                 * string convention.
+                 *
+                 * @type {string}
+                 *
+                 */
                 if ( this.properties === 6 ) {
-                    /***
-                     * A temporary variable used to construct a string according
-                     * to the `"Type"` and `"Property"` enumeration.
-                     *
-                     * @type {string}
-                     */
                     const property: string = [
                         this.organization,
                         this.environment,
@@ -343,6 +336,52 @@ class Parameter implements Options {
      */
     public enumerations(): Properties {
         return (this.provider && this.identifier) ? Properties.Parameter : (this.provider) ? Properties.Provider : (this.identifier) ? Properties.Identifier : Properties.Default;
+    }
+
+    /***
+     * String -> Parameter Initializer
+     * ---
+     *
+     * Note that only `Directory` types can only be instantiated from any given string,
+     * and only a full 6-attribute Parameter type is compatible.
+     *
+     * @example
+     * const $ = Parameter.instantiate("organization/environment/application/resource/provider/identifier");
+     *
+     * @param {string} value
+     * @param {boolean} debug
+     *
+     * @return {Parameter}
+     *
+     */
+    public static instantiate(value: string, debug: boolean = false): Parameter {
+        const split = value.split( "/" );
+
+        (debug) && console.debug( "[Debug]", "Properties" + ":", split );
+
+        const enumerable = (split.length === Properties.Parameter);
+
+        (debug) && console.debug( "[Debug]", "Enumerable" + ":", enumerable );
+
+        if ( !enumerable ) {
+            const $ = new Error( "Parameter-Enumeration-Error" );
+            $.name = "Parameter-Enumeration-Error";
+            $.message = "\n";
+
+            $.message += "Invalid Number of \"/\" Separated Attributes" + "\n"
+            $.message += "  - Example: \"IBM/Production/Audit-Service/Storage/Watson-AI/Credentials\"" + "\n"
+
+            throw $;
+        }
+
+        return new Parameter( {
+            organization: split[0],
+            environment: split[1],
+            application: split[2],
+            resource: split[3],
+            provider: split[4],
+            identifier: split[5]
+        } );
     }
 }
 

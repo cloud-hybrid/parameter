@@ -48,13 +48,12 @@
         "composite": true,
         "diagnostics": true,
         "importHelpers": true,
-        "noEmitHelpers": false,
         "isolatedModules": true,
         "disableSizeLimit": true,
         "extendedDiagnostics": true,
         "downlevelIteration": true,
         "useDefineForClassFields": true,
-        "noErrorTruncation": true,
+        "noErrorTruncation": false,
         "checkJs": true,
         "preserveSymlinks": true,
         "allowUnreachableCode": true,
@@ -70,10 +69,14 @@
     "exclude": [
         "**/*.d.ts",
         "coverage",
-        "distribution"
+        "distribution",
+        "declarations",
+        "package.json"
     ],
     "include": [
+        "**/*.js",
         "**/*.ts",
-        "**/*.js"
+        "**/*.json",
+        "**/*.test.ts"
     ]
 }
