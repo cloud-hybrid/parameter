@@ -22,8 +22,8 @@ pattern to further extend from; examples of applicable extensions include usages
 
 - [Usage](#usage)
   - [Development](#development)
-  - [CommonJS](#commonjs)
-  - [Modules (ECMA)](#modules-ecma)
+  - [Common-JS](#common-js)
+  - [Modules](#modules)
 - [Documentation](#documentation)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -66,7 +66,7 @@ Lastly, continue with development.
 
 For alternative build & unit-testing commands, please refer to the [commands list](#usage).
 
-### CommonJS ###
+### Common-JS ###
 
 ```node
 const Main = async () => {
@@ -93,7 +93,7 @@ const Main = async () => {
 (async () => await Main())();
 ```
 
-### Modules (ECMA) ###
+### Modules ###
 
 ```node
 import { Parameter } from "@cloud-technology/parameter";
