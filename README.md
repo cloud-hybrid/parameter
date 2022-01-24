@@ -20,8 +20,13 @@ pattern to further extend from; examples of applicable extensions include usages
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Usage](#usage)
-  - [Development](#development)
+- [`@cloud-technology/parameter`](#cloud-technologyparameter)
+    - [Table of Contents](#table-of-contents)
+    - [Usage](#usage)
+        - [Development](#development)
+        - [Node.js (CommonJS)](#nodejs-commonjs)
+        - [ECMA (Modules)](#ecma-modules)
+    - [Documentation](#documentation)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -62,6 +67,55 @@ Locally developing with `jest` file-watchers helps ensure non-breaking change ar
 Lastly, continue with development.
 
 For alternative build & unit-testing commands, please refer to the [commands list](#usage).
+
+### CommonJS ###
+
+```node
+const Main = async () => {
+    const { Parameter } = await import("@cloud-technology/parameter");
+    
+    const instance = new Parameter({
+        organization: "IBM",
+        environment: "Development",
+        application: "Application",
+        resource: "Secret-Token",
+        provider: "SSM",
+        identifier: "ID"
+    });
+
+    console.log(instance);
+    
+    console.log(instance.string());
+
+    console.log(instance.string("Directory"));
+    console.log(instance.string("Train-Case"));
+    console.log(instance.string("Screaming-Train-Case"));
+}
+
+(async () => await Main())();
+```
+
+### Modules (ECMA) ###
+
+```node
+import { Parameter } from "@cloud-technology/parameter";
+
+const instance = new Parameter({
+    organization: "IBM",
+    environment: "Development",
+    application: "Application",
+    resource: "Secret-Token",
+    provider: "SSM",
+    identifier: "ID"
+});
+
+console.log(instance);
+console.log(instance.string());
+
+console.log(instance.string("Directory"));
+console.log(instance.string("Train-Case"));
+console.log(instance.string("Screaming-Train-Case"));
+```
 
 ## Documentation ##
 

@@ -1,5 +1,14 @@
 import { Title, Case } from "./train-case.js";
 
+/***
+ * Type Enumeration
+ * ---
+ * @public
+ * @property Directory {string} - Directory type
+ * @property Train {string} - Screaming-Train-Case string
+ * @property Dash {string} - Train-Case string
+ *
+ */
 enum Type {
     /// Directory type
     Directory = "Directory",
@@ -8,6 +17,17 @@ enum Type {
     /// Train-Case string
     Dash = "Train-Case"
 }
+
+/***
+ * Properties Enumeration
+ * ---
+ * @public
+ *
+ * @property {number} Default - Number of Properties used with Parameter.default Constructor.
+ * @property {number} Provider - Number of Properties used when Negating the Identifier property, but inclusion of Provider.
+ * @property {number} Identifier - Number of Properties used when Negating the Provider property, but inclusion of Identifier.
+ * @property {number} Parameter - Number of Properties used with a Full Parameter constructor call.
+ */
 
 enum Properties {
     /*** Number of Properties used with Parameter.default Constructor */
@@ -20,6 +40,26 @@ enum Properties {
     Parameter = 6
 }
 
+/***
+ * *A Zero-Dependency Type-Interface via Node.js*
+ *
+ * Parameters often used during configuration can be a
+ * difficult concept to standardize.
+ *
+ * `@cloud-technology/parameter` aims to strictly define
+ * a naming and constructor convention to ease efforts associated
+ * with configuration, while allowing for an easy inheritance
+ * pattern to further extend from; examples of applicable
+ * extensions include usages with:
+ *
+ * - `etcd`
+ * - Hashicorp's `vault`
+ * - AWS Secure Systems Manager
+ * - AWS Secrets Manager
+ * - Microsoft Cloud Vault
+ * - GCP Credential Management
+ *
+ */
 class Parameter implements Options {
     /***
      * organization - Target Deliverable Maintainer
