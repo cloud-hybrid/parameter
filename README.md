@@ -20,13 +20,11 @@ pattern to further extend from; examples of applicable extensions include usages
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [`@cloud-technology/parameter`](#cloud-technologyparameter)
-    - [Table of Contents](#table-of-contents)
-    - [Usage](#usage)
-        - [Development](#development)
-        - [Node.js (CommonJS)](#nodejs-commonjs)
-        - [ECMA (Modules)](#ecma-modules)
-    - [Documentation](#documentation)
+- [Usage](#usage)
+  - [Development](#development)
+  - [CommonJS](#commonjs)
+  - [Modules (ECMA)](#modules-ecma)
+- [Documentation](#documentation)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
