@@ -29,6 +29,10 @@ cdktf.out
 cdktf.out/*
 cdktf.out/**
 
+*.js
+**/*.js
+**/*.d.ts
+
 .DS_Store
 
 *.tgz

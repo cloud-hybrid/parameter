@@ -1,6 +1,6 @@
 import Utility from "util";
 
-import { Parameter, Properties } from "..";
+import { Parameter, Properties } from "@cloud-technology/parameter";
 
 describe( "String Unit Test", () => {
     const parameter = new Parameter( {

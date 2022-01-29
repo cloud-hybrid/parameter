@@ -4,29 +4,24 @@
 
 Parameters often used during configuration can be a difficult concept to standardize.
 
-`@cloud-technology/parameter` aims to strictly define a naming and constructor convention
-to ease efforts associated with configuration, while allowing for an easy inheritance
-pattern to further extend from; examples of applicable extensions include usages with:
+`@cloud-technology/parameter` aims to strictly define a naming and constructor convention to ease efforts associated
+with configuration, while allowing for an easy inheritance pattern to further extend from; examples of applicable
+extensions include usages with:
 
 - `etcd`
 - Hashicorp's `vault`
 - AWS Secure Systems Manager
 - AWS Secrets Manager
 - Microsoft Cloud Vault
-- GCP Credential Management 
+- GCP Credential Management
 
 ## Table of Contents ##
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 - [Usage](#usage)
-  - [Development](#development)
-  - [Common-JS](#common-js)
-  - [Modules](#modules)
+    - [Development](#development)
+    - [Common-JS](#common-js)
+    - [Modules](#modules)
 - [Documentation](#documentation)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Usage ##
 
@@ -57,7 +52,7 @@ Locally developing with `jest` file-watchers helps ensure non-breaking change ar
     ```bash
     npm run build
     ```
-3. Open an Additional TTY and Run 
+3. Open an Additional TTY and Run
     ```bash
     npm run start
     ```
@@ -71,7 +66,7 @@ For alternative build & unit-testing commands, please refer to the [commands lis
 ```node
 const Main = async () => {
     const { Parameter } = await import("@cloud-technology/parameter");
-    
+
     const instance = new Parameter({
         organization: "IBM",
         environment: "Development",
@@ -82,7 +77,7 @@ const Main = async () => {
     });
 
     console.log(instance);
-    
+
     console.log(instance.string());
 
     console.log(instance.string("Directory"));
@@ -90,7 +85,7 @@ const Main = async () => {
     console.log(instance.string("Screaming-Train-Case"));
 }
 
-(async () => await Main())();
+( async () => await Main() )();
 ```
 
 ### Modules ###

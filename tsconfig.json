@@ -8,7 +8,7 @@
         "incremental": true,
         "inlineSourceMap": false,
         "noEmitOnError": true,
-        "listEmittedFiles": true,
+        "listEmittedFiles": false,
         "listFilesOnly": false,
         "noFallthroughCasesInSwitch": true,
         "declaration": true,
@@ -22,8 +22,6 @@
         "declarationMap": false,
         "strictFunctionTypes": true,
         "baseUrl": ".",
-        "outDir": "distribution",
-        "declarationDir": "declarations",
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
         "exactOptionalPropertyTypes": true,
@@ -34,7 +32,6 @@
             "ES2018",
             "ES2019",
             "ES2020",
-            "ES2021",
             "ESNext"
         ],
         "module": "ESNext",
@@ -48,12 +45,13 @@
         "composite": true,
         "diagnostics": true,
         "importHelpers": true,
+        "noEmitHelpers": false,
         "isolatedModules": true,
         "disableSizeLimit": true,
-        "extendedDiagnostics": true,
+        "extendedDiagnostics": false,
         "downlevelIteration": true,
         "useDefineForClassFields": true,
-        "noErrorTruncation": false,
+        "noErrorTruncation": true,
         "checkJs": true,
         "preserveSymlinks": true,
         "allowUnreachableCode": true,
@@ -68,15 +66,11 @@
     },
     "exclude": [
         "**/*.d.ts",
-        "coverage",
-        "distribution",
-        "declarations",
-        "package.json"
+        "src/**/*.js"
     ],
     "include": [
-        "**/*.js",
-        "**/*.ts",
-        "**/*.json",
-        "**/*.test.ts"
+        "index.ts",
+        "src/**/*.ts",
+        "unit-testing/**/*.ts"
     ]
 }

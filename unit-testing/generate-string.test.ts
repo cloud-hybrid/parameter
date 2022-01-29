@@ -14,7 +14,7 @@ describe( "Unit Test", () => {
     });
 
     it("Organization", async () => {
-        const Import = await import("./../src/index.js");
+        const Import = await import("./../src");
 
         const instance = Import.Parameter.instantiate(input);
 
@@ -24,7 +24,7 @@ describe( "Unit Test", () => {
     });
 
     it("Environment", async () => {
-        const Import = await import("./../src/index.js");
+        const Import = await import("./../src");
 
         const instance = Import.Parameter.instantiate(input);
 
@@ -34,7 +34,7 @@ describe( "Unit Test", () => {
     });
 
     it("Application", async () => {
-        const Import = await import("./../src/index.js");
+        const Import = await import("./../src");
 
         const instance = Import.Parameter.instantiate(input);
 
@@ -44,7 +44,7 @@ describe( "Unit Test", () => {
     });
 
     it("Resource", async () => {
-        const Import = await import("./../src/index.js");
+        const Import = await import("./../src");
 
         const instance = Import.Parameter.instantiate(input);
 
@@ -54,7 +54,7 @@ describe( "Unit Test", () => {
     });
 
     it("Provider", async () => {
-        const Import = await import("./../src/index.js");
+        const Import = await import("./../src");
 
         const instance = Import.Parameter.instantiate(input);
 
@@ -64,7 +64,7 @@ describe( "Unit Test", () => {
     });
 
     it("Identifier", async () => {
-        const Import = await import("./../src/index.js");
+        const Import = await import("./../src");
 
         const instance = Import.Parameter.instantiate(input);
 
@@ -74,7 +74,7 @@ describe( "Unit Test", () => {
     });
 
     it("Properties", async () => {
-        const Import = await import("./../src/index.js");
+        const Import = await import("./../src");
 
         const instance = Import.Parameter.instantiate(input);
 

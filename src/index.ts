@@ -1,5 +1,5 @@
-import { Parameter, Properties, Type } from "./parameter.js";
-import type { Options } from "./parameter.js";
+import { Parameter, Properties, Type } from "./parameter";
+import type { Options } from "./parameter";
 
 export { Parameter, Properties, Type };
 export type { Options };

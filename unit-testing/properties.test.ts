@@ -1,6 +1,6 @@
 import Utility from "util";
 
-import { Parameter } from "..";
+import { Parameter } from "@cloud-technology/parameter";
 
 describe( "Unit Test", () => {
     const parameter = new Parameter({
@@ -22,7 +22,7 @@ describe( "Unit Test", () => {
 
 
     it("Module", async () => {
-        const Import = await import("./../src/index");
+        const Import = await import("./../src");
 
         expect(Import).toHaveProperty("Parameter");
 

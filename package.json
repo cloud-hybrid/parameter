@@ -1,11 +1,11 @@
 {
     "name": "@cloud-technology/parameter",
     "private": false,
-    "version": "0.4.119",
+    "version": "0.4.122",
     "type": "module",
-    "main": "unit-testing/index.js",
+    "main": "index.js",
     "description": "Base Parameter Type-Interface via Node.js",
-    "types": "declarations/index.d.ts",
+    "types": "index.d.ts",
     "repository": {
         "type": "git",
         "directory": ".",
@@ -18,13 +18,14 @@
         "start": "node unit-testing/watch",
         "build": "tsc --watch",
         "compile": "tsc && node unit-testing",
-        "clean": "rm -rf node_modules declarations distribution coverage .idea .vscode .eclipse package-lock.json",
+        "demonstrate": "node --es-module-specifier-resolution node .",
         "upload": "npm publish --access public",
         "reinstall": "npm update && npm install --global --force",
-        "prepublishOnly": "npm run clean && npm install --silent && tsc && npm run test",
-        "documentation": "doctoc README.md --github"
+        "prepublishOnly": "npm install --silent && tsc && npm run test"
     },
-    "dependencies": {},
+    "dependencies": {
+        "@cloud-technology/parameter": "./src"
+    },
     "devDependencies": {
         "@jest/globals": "latest",
         "@types/jest": "latest",
@@ -41,8 +42,7 @@
         "ts-node": "latest",
         "tslib": "latest",
         "typescript": "latest",
-        "typescript-eslint-language-service": "latest",
-        "@cloud-technology/parameter": "./distribution"
+        "typescript-eslint-language-service": "latest"
     },
     "eslintConfig": {
         "parser": "@typescript-eslint/parser",
