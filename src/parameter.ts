@@ -24,25 +24,20 @@ enum Type {
  * @public
  *
  * @property {number} Default - Number of Properties used with Parameter.default Constructor.
- * @property {number} Provider - Number of Properties used when Negating the Identifier property, but inclusion of Provider.
- * @property {number} Identifier - Number of Properties used when Negating the Provider property, but inclusion of Identifier.
+ * @property {number} Identifier - Number of Properties used with inclusion of Identifier.
  * @property {number} Parameter - Number of Properties used with a Full Parameter constructor call.
  */
 
 enum Properties {
     /*** Number of Properties used with Parameter.default Constructor */
     Default = 4,
-    /*** Number of Properties used when negating the Identifier property, but inclusion of Provider */
-    Provider = 5,
-    /*** Number of Properties used when negating the Provider property, but inclusion of Identifier */
+    /*** Number of Properties used with inclusion of Identifier */
     Identifier = 5,
     /*** Number of Properties used with a Full Parameter constructor call */
-    Parameter = 6
+    Parameter = 5
 }
 
 type Selectable = keyof typeof Properties;
-
-type Defaults = "identifier" | "provider";
 
 /***
  * *A Zero-Dependency Type-Interface via Node.js*
@@ -87,25 +82,18 @@ class Parameter implements Options {
     application: string;
 
     /***
-     * resource - Descriptive Identifier
+     * resource - Distributed System or Infrastructure
      *
      * @type {string}
      */
     resource: string;
 
     /***
-     * provider - Service(s) either Consumed or Provided
-     *
-     * @type {string|null|undefined}
-     */
-    provider?: string | null | undefined = null;
-
-    /***
      * identifier - Additional, Optional String
      *
      * @type {string|null|undefined}
      */
-    identifier?: string | null | undefined = null;
+    identifier?: string | undefined;
 
     properties: Properties;
 
@@ -114,8 +102,7 @@ class Parameter implements Options {
         environment: "development",
         application: "temporary",
         resource: "parameter",
-        provider: null,
-        identifier: null
+        identifier: "identifier"
     };
 
     /***
@@ -125,8 +112,7 @@ class Parameter implements Options {
      * | **Organization** |   *Required*   |                    ...                    |            `IBM`            |
      * | **Environment**  |   *Required*   |       Network (L2) Seperated Alias        | `Development`, `Production` |
      * | **Application**  |   *Required*   | Stack, Functional Purpose, or Common-Name |  `Financial-Audit-Service`  |
-     * |   **Resource**   |   *Required*   |          Descriptive Identifier           | `Log-Results`. `Artifacts`  |
-     * |   **Provider**   |   *Optional*   |  Service(s) either Consumed or Provided   |     `S3`, `EC2`, `CFN`      |
+     * |   **Resource**   |   *Required*   |    Distributed System or Infrastructure   |      `Mongo-DB`. `S3`       |
      * |  **Identifier**  |   *Optional*   |        Additional, Optional String        |   `VPC-ID`, `Private-Key`   |
      *
      * @param {Options} options - Constructor parameters type
@@ -140,7 +126,6 @@ class Parameter implements Options {
 
         this.resource = options.resource;
 
-        this.provider = options.provider;
         this.identifier = options.identifier;
 
         /*** Utility Properties */
@@ -163,7 +148,6 @@ class Parameter implements Options {
             environment: this.environment,
             application: this.application,
             resource: this.resource,
-            provider: this.provider,
             identifier: this.identifier
         };
     }
@@ -231,7 +215,7 @@ class Parameter implements Options {
          * - `environment`
          * - `application`
          * - `resource`
-         * - `provider` *or* `identifier`
+         * - `identifier`
          *
          * then construct a string, first joining an array for the initialized attributes,
          * according to either a `"Directory"`, `"Train-Case"`, or `"Screaming-Train-Case"`
@@ -241,90 +225,37 @@ class Parameter implements Options {
          *
          */
         else {
-            if ( this.properties === 5 ) {
-                /***
-                 * A temporary variable used to construct a string according
-                 * to the `"Type"` and `"Property"` enumeration.
-                 *
-                 * @type {string}
-                 */
-                const property: string = [
-                    this.organization,
-                    this.environment,
-                    this.application,
-                    this.resource,
+            /***
+             * A temporary variable used to construct a string according
+             * to the `"Type"` and `"Property"` enumeration.
+             *
+             * @type {string}
+             */
+            const property: string = [
+                this.organization,
+                this.environment,
+                this.application,
+                this.resource,
+                this.identifier
+            ].join( (type === "Directory")
+                ? "/" : (type === "Screaming-Train-Case")
+                    ? "-" : "/"
+            );
 
-                    this.provider ?? this.identifier
-                ].join( (type === "Directory")
-                    ? "/" : (type === "Screaming-Train-Case")
-                        ? "-" : "/"
-                );
+            /***
+             * String cast to user-defined convention of one of the following:
+             * - Directory = "Directory",
+             * - Train = "Screaming-Train-Case",
+             * - Dash = "Train-Case"
+             *
+             * @type {string}
+             */
+            const cast: string = Case( property, { condense: false } );
 
-                /***
-                 * String cast to user-defined convention of one of the following:
-                 * - Directory = "Directory",
-                 * - Train = "Screaming-Train-Case",
-                 * - Dash = "Train-Case"
-                 *
-                 * @type {string}
-                 */
-                const cast: string = Case( property, { condense: false } );
-
-                /*** Return a potentially titled string, capitalizing according to type */
-                return (type === "Screaming-Train-Case") ? Title( cast )
-                    : (type === "Train-Case") ? cast
-                        : property;
-            } else {
-                /***
-                 * If the constructor instantiated a Parameter type with the following attributes:
-                 * - `organization`
-                 * - `environment`
-                 * - `application`
-                 * - `resource`
-                 * - `provider`
-                 * - `identifier`
-                 *
-                 * then construct a string, first joining an array for the initialized attributes,
-                 * according to either a `"Directory"`, `"Train-Case"`, or `"Screaming-Train-Case"`
-                 * string convention.
-                 *
-                 * @type {string}
-                 *
-                 */
-                if ( this.properties === 6 ) {
-                    const property: string = [
-                        this.organization,
-                        this.environment,
-                        this.application,
-                        this.resource,
-
-                        this.provider,
-                        this.identifier
-                    ].join( (type === "Directory")
-                        ? "/" : (type === "Screaming-Train-Case")
-                            ? "-" : "/"
-                    );
-
-                    /***
-                     * String cast to user-defined convention of one of the following:
-                     * - Directory = "Directory",
-                     * - Train = "Screaming-Train-Case",
-                     * - Dash = "Train-Case"
-                     *
-                     * @type {string}
-                     */
-                    const cast: string = Case( property, { condense: false } );
-
-                    /*** Return a potentially titled string, capitalizing according to type */
-                    return (type === "Screaming-Train-Case") ? Title( cast )
-                        : (type === "Train-Case") ? cast
-                            : property;
-                }
-
-                /*** Escape Hatch for Code Coverage */
-
-                return JSON.stringify( this.format(), null, 4 );
-            }
+            /*** Return a potentially titled string, capitalizing according to type */
+            return (type === "Screaming-Train-Case") ? Title( cast )
+                : (type === "Train-Case") ? cast
+                    : property;
         }
     }
 
@@ -332,12 +263,12 @@ class Parameter implements Options {
      * Enumeration Evaluation
      * ---
      *
-     * @public
+     * @private
      * @summary
      * @returns {Properties}
      */
     public enumerations(): Properties {
-        return (this.provider && this.identifier) ? Properties.Parameter : (this.provider) ? Properties.Provider : (this.identifier) ? Properties.Identifier : Properties.Default;
+        return (this.identifier) ? Properties.Parameter : Properties.Default;
     }
 
     /***
@@ -345,10 +276,10 @@ class Parameter implements Options {
      * ---
      *
      * Note that only `Directory` types can only be instantiated from any given string,
-     * and only a full 6-attribute Parameter type is compatible.
+     * and only a full 5-attribute Parameter type is compatible.
      *
      * @example
-     * const $ = Parameter.instantiate("organization/environment/application/resource/provider/identifier");
+     * const $ = Parameter.instantiate("organization/environment/application/resource/identifier");
      *
      * @param {string} value
      * @param {boolean} debug
@@ -381,8 +312,7 @@ class Parameter implements Options {
             environment: split[1],
             application: split[2],
             resource: split[3],
-            provider: split[4],
-            identifier: split[5]
+            identifier: split[4]
         } );
     }
 
@@ -391,30 +321,23 @@ class Parameter implements Options {
      * ---
      *
      * Note that only `Directory` types can only be instantiated from any given string,
-     * but via the properties argument, can be instantiated from either a 4-attribute, 5-attribute, or 6-attribute
+     * but via the properties argument, can be instantiated from either a 4-attribute, or 5-attribute
      * directory-separated string.
      *
      * @example
      * const $ = Parameter.create("organization/environment/application/resource");
      *
      * @example
-     * const $ = Parameter.create("organization/environment/application/resource/provider");
-     *
-     * @example
      * const $ = Parameter.create("organization/environment/application/resource/identifier");
-     *
-     * @example
-     * const $ = Parameter.create("organization/environment/application/resource/provider/identifier");
      *
      * @param {string} value
      * @param {Selectable} properties
-     * @param {Defaults} defaults
      * @param {boolean} debug
      *
      * @return {Parameter}
      *
      */
-    public static create(value: string, properties: Selectable, defaults: Defaults = "identifier", debug: boolean = false): Parameter {
+    public static create(value: string, properties: Selectable, debug: boolean = false): Parameter {
         if ( properties === "Default" ) { /// 4 Total Properties
             (debug) && console.debug( "[Debug]", "Type" + ":", "Default, 4" );
 
@@ -426,7 +349,7 @@ class Parameter implements Options {
 
             (debug) && console.debug( "[Debug]", "Enumerable" + ":", enumerable );
 
-            /*** No Provider Type, and no Identifier Type */
+            /*** No Identifier Type */
             if ( !enumerable ) { /// Only should contain 4 directories
                 const $ = new Error( "Parameter-Enumeration-Error" );
                 $.name = "Parameter-Enumeration-Error";
@@ -445,18 +368,18 @@ class Parameter implements Options {
                 resource: split[3]
             } );
         } else {
-            if ( properties === "Provider" || properties === "Identifier" ) { /// 5 Total Properties
-                (debug) && console.debug( "[Debug]", "Type" + ":", "Provider || Identifier, 5" );
+            if ( properties === "Identifier" || properties === "Parameter" ) { /// 5 Total Properties
+                (debug) && console.debug( "[Debug]", "Type" + ":", "Identifier, 5" );
 
                 const split = value.split( "/" );
 
                 (debug) && console.debug( "[Debug]", "Properties" + ":", split );
 
-                const enumerable = (split.length === Properties.Provider && split.length === Properties.Identifier);
+                const enumerable = (split.length === Properties.Parameter || split.length === Properties.Identifier);
 
                 (debug) && console.debug( "[Debug]", "Enumerable" + ":", enumerable );
 
-                /*** No Provider Type, and no Identifier Type */
+                /*** No Identifier Type */
                 if ( !enumerable ) { /// Only should contain 5 directories
                     const $ = new Error( "Parameter-Enumeration-Error" );
                     $.name = "Parameter-Enumeration-Error";
@@ -464,25 +387,17 @@ class Parameter implements Options {
 
                     $.message += "Invalid Number of \"/\" Separated Attributes" + "\n";
                     $.message += "  - Example: \"IBM/Production/Audit-Service/Watson-AI/Credentials\"" + "\n";
-                    $.message += "  - Example: \"IBM/Production/Audit-Service/Billing-Account/Credentials\"" + "\n";
 
                     throw $;
                 }
 
-                return (defaults === "identifier")
-                    ? new Parameter( {
-                        organization: split[0],
-                        environment: split[1],
-                        application: split[2],
-                        resource: split[3],
-                        identifier: split[4]
-                    } ) : new Parameter( {
-                        organization: split[0],
-                        environment: split[1],
-                        application: split[2],
-                        resource: split[3],
-                        provider: split[4]
-                    } );
+                return new Parameter( {
+                    organization: split[0],
+                    environment: split[1],
+                    application: split[2],
+                    resource: split[3],
+                    identifier: split[4]
+                } );
             } else {
                 return Parameter.instantiate( value, debug );
             }
@@ -520,18 +435,11 @@ interface Options {
     resource: string;
 
     /***
-     * provider - Service(s) either Consumed or Provided
-     *
-     * @type {string|null|undefined}
-     */
-    provider?: string | null | undefined;
-
-    /***
      * identifier - Additional, Optional String
      *
      * @type {string|null|undefined}
      */
-    identifier?: string | null | undefined;
+    identifier?: string | undefined;
 }
 
 export type { Options };

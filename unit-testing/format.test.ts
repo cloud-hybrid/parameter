@@ -8,7 +8,6 @@ describe( "String Unit Test", () => {
         environment: "environment",
         application: "application",
         resource: "resource",
-        provider: "provider",
         identifier: "identifier"
     } );
 
@@ -40,12 +39,6 @@ describe( "String Unit Test", () => {
         const $ = parameter.format();
         console.log( "Format ($.resource)" + ":", Utility.inspect( $.resource, { colors: true } ) );
         expect( $.resource ).toEqual("resource");
-    } );
-
-    it( "Provider", async () => {
-        const $ = parameter.format();
-        console.log( "Format ($.provider)" + ":", Utility.inspect( $.provider, { colors: true } ) );
-        expect( $.provider ).toEqual("provider");
     } );
 
     it( "Identifier", async () => {

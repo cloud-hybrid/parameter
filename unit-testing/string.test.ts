@@ -8,7 +8,6 @@ describe( "String Unit Test", () => {
         environment: "environment",
         application: "application",
         resource: "resource",
-        provider: "provider",
         identifier: "identifier"
     } );
 
@@ -19,7 +18,6 @@ describe( "String Unit Test", () => {
         expect( parameter ).toHaveProperty( "application" );
         expect( parameter ).toHaveProperty( "resource" );
         expect( parameter ).toHaveProperty( "identifier" );
-        expect( parameter ).toHaveProperty( "provider" );
     } );
 
     it( "Default", async () => {
@@ -67,7 +65,6 @@ describe( "String Unit Test", () => {
         expect( Default ).toHaveProperty( "resource" );
 
         expect( Default.identifier ).toBeFalsy();
-        expect( Default.provider ).toBeFalsy();
     } );
 
     it( "Default", async () => {
@@ -100,55 +97,6 @@ describe( "String Unit Test", () => {
         expect( $ ).toEqual( Properties.Default );
     } );
 
-    const Provider = new Parameter( {
-        organization: "organization",
-        environment: "environment",
-        application: "application",
-        resource: "resource",
-        provider: "provider"
-    } );
-
-    /*** Attributes */
-    it( "Attributes", async () => {
-        expect( Provider ).toHaveProperty( "organization" );
-        expect( Provider ).toHaveProperty( "environment" );
-        expect( Provider ).toHaveProperty( "application" );
-        expect( Provider ).toHaveProperty( "resource" );
-        expect( Provider ).toHaveProperty( "provider" );
-
-        expect( Provider.identifier ).toBeFalsy();
-    } );
-
-    it( "Default", async () => {
-        const $ = Provider.string();
-        console.log( "String" + ":", Utility.inspect( $, { colors: true } ) );
-        expect( $ ).toBeTruthy();
-    } );
-
-    it( "Train-Case", async () => {
-        const $ = Provider.string( "Train-Case" );
-        console.log( "Train-Case" + ":", Utility.inspect( $, { colors: true } ) );
-        expect( $ ).toBeTruthy();
-    } );
-
-    it( "Screaming-Train-Case", async () => {
-        const $ = Provider.string( "Screaming-Train-Case" );
-        console.log( "Screaming-Train-Case" + ":", Utility.inspect( $, { colors: true } ) );
-        expect( $ ).toBeTruthy();
-    } );
-
-    it( "Directory", async () => {
-        const $ = Provider.string( "Directory" );
-        console.log( "Directory" + ":", Utility.inspect( $, { colors: true } ) );
-        expect( $ ).toBeTruthy();
-    } );
-
-    it( "Enumeration", async () => {
-        const $ = Provider.enumerations();
-        console.log( "Directory" + ":", Utility.inspect( $, { colors: true } ) );
-        expect( $ ).toEqual( Properties.Provider );
-    } );
-
     const Identifier = new Parameter( {
         organization: "organization",
         environment: "environment",
@@ -164,8 +112,6 @@ describe( "String Unit Test", () => {
         expect( Identifier ).toHaveProperty( "application" );
         expect( Identifier ).toHaveProperty( "resource" );
         expect( Identifier ).toHaveProperty( "identifier" );
-
-        expect( Identifier.provider ).toBeFalsy();
     } );
 
     it( "Default", async () => {
