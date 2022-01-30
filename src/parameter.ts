@@ -1,4 +1,4 @@
-import { Title, Case } from "./train-case";
+import { Title, Case } from "./train-case.js";
 
 /***
  * Type Enumeration

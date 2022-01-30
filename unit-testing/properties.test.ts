@@ -22,7 +22,7 @@ describe( "Unit Test", () => {
 
 
     it("Module", async () => {
-        const Import = await import("./../src");
+        const Import = await import("@cloud-technology/parameter");
 
         expect(Import).toHaveProperty("Parameter");
 

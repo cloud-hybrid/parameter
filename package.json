@@ -1,7 +1,7 @@
 {
     "name": "@cloud-technology/parameter",
     "private": false,
-    "version": "0.4.123",
+    "version": "0.4.125",
     "type": "module",
     "main": "index.js",
     "description": "Base Parameter Type-Interface via Node.js",
@@ -23,10 +23,9 @@
         "reinstall": "npm update && npm install --global --force",
         "prepublishOnly": "npm install --silent && tsc && npm run test"
     },
-    "dependencies": {
-        "@cloud-technology/parameter": "./src"
-    },
+    "dependencies": {},
     "devDependencies": {
+        "@cloud-technology/parameter": ".",
         "@jest/globals": "latest",
         "@types/jest": "latest",
         "@types/node": "latest",
