@@ -72,7 +72,6 @@ const Main = async () => {
         environment: "Development",
         application: "Application",
         resource: "Secret-Token",
-        provider: "SSM",
         identifier: "ID"
     });
 
@@ -98,7 +97,6 @@ const instance = new Parameter({
     environment: "Development",
     application: "Application",
     resource: "Secret-Token",
-    provider: "SSM",
     identifier: "ID"
 });
 
