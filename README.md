@@ -70,9 +70,9 @@ const Main = async () => {
     const instance = new Parameter({
         organization: "IBM",
         environment: "Development",
-        application: "Application",
-        resource: "Secret-Token",
-        identifier: "ID"
+        application: "Storage-Store",
+        service: "Authorization-Service",
+        identifier: "Credentials"
     });
 
     console.log(instance);
@@ -95,9 +95,9 @@ import { Parameter } from "@cloud-technology/parameter";
 const instance = new Parameter({
     organization: "IBM",
     environment: "Development",
-    application: "Application",
-    resource: "Secret-Token",
-    identifier: "ID"
+    application: "Storage-Store",
+    service: "Authorization-Service",
+    identifier: "Credentials"
 });
 
 console.log(instance);
