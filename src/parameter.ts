@@ -3,12 +3,15 @@ import { Title, Case } from "./train-case.js";
 /***
  * Type Enumeration
  * ---
+ *
  * @public
+ *
  * @property Directory {string} - Directory type
  * @property Train {string} - Screaming-Train-Case string
  * @property Dash {string} - Train-Case string
  *
  */
+
 enum Type {
     /// Directory type
     Directory = "Directory",
@@ -21,16 +24,22 @@ enum Type {
 /***
  * Properties Enumeration
  * ---
+ *
  * @public
  *
  * @property {number} Default - Number of Properties used with Parameter.default Constructor.
  * @property {number} Identifier - Number of Properties used with inclusion of Identifier.
  * @property {number} Parameter - Number of Properties used with a Full Parameter constructor call.
+ *
  */
 
 enum Properties {
-    /*** Number of Properties used with Parameter.default Constructor */
+    /*** Number of Properties used with Parameter.Default Constructor */
     Default = 4,
+    /*** Number of Properties used with Parameter.Resource Constructor */
+    Resource = 4,
+    /*** Number of Properties used with Parameter.Service Constructor */
+    Service = 4,
     /*** Number of Properties used with inclusion of Identifier */
     Identifier = 5,
     /*** Number of Properties used with a Full Parameter constructor call */
@@ -58,73 +67,84 @@ type Selectable = keyof typeof Properties;
  * - Microsoft Cloud Vault
  * - GCP Credential Management
  *
+ * Please keep in mind that the **`*.service`** attribute, while a possible
+ * subtype, is more or less arbitrary as to what it's describing. Rather, the
+ * `Parameter.service` dot-product should be thought as a *service*,
+ * *resource*, or *identifier*.
+ *
  */
+
 class Parameter implements Options {
     /***
      * organization - Target Deliverable Maintainer
      *
      * @type {string}
+     *
      */
+
     organization: string;
 
     /***
      * environment - Network (L2) Seperated Alias
      *
      * @type {string}
+     *
      */
+
     environment: string;
 
     /***
      * application - Stack, Functional Purpose, or Common-Name
      *
      * @type {string}
+     *
      */
+
     application: string;
 
     /***
-     * resource - Distributed System or Infrastructure
+     * service - Descriptive Identifier Key-Word, typically used to describe:
+     *     - A Cloud Resource
+     *     - A Service
      *
      * @type {string}
+     *
      */
-    resource: string;
+
+    service: string;
+
 
     /***
      * identifier - Additional, Optional String
      *
      * @type {string|null|undefined}
+     *
      */
+
     identifier?: string | undefined;
 
     properties: Properties;
 
-    static default: Options = {
-        organization: "cloud-technology",
-        environment: "development",
-        application: "temporary",
-        resource: "parameter",
-        identifier: "identifier"
-    };
-
     /***
      *
-     * |       Key        |   Requirement  |                Description                |         Example(s)          |
-     * |:----------------:|:--------------:|:-----------------------------------------:|:---------------------------:|
-     * | **Organization** |   *Required*   |                    ...                    |            `IBM`            |
-     * | **Environment**  |   *Required*   |       Network (L2) Seperated Alias        | `Development`, `Production` |
-     * | **Application**  |   *Required*   | Stack, Functional Purpose, or Common-Name |  `Financial-Audit-Service`  |
-     * |   **Resource**   |   *Required*   |    Distributed System or Infrastructure   |      `Mongo-DB`. `S3`       |
-     * |  **Identifier**  |   *Optional*   |        Additional, Optional String        |   `VPC-ID`, `Private-Key`   |
+     * |             Key             |   Requirement  |                Description                |           Example(s)            |
+     * |:---------------------------:|:--------------:|:-----------------------------------------:|:-------------------------------:|
+     * |        **Organization**     |   *Required*   |                    ...                    |              `IBM`              |
+     * |         **Environment**     |   *Required*   |       Network (L2) Seperated Alias        |    `Development`, `Production`  |
+     * |        **Application**      |   *Required*   | Stack, Functional Purpose, or Common-Name |    `Financial-Audit-Service`    |
+     * |          **Service**        |   *Required*   | Distributed System, Infrastructure, or ID | `Mongo-DB`, `S3`, `Credentials` |
+     * |        **Identifier**       |   *Optional*   |        Additional, Optional String        |      `VPC-ID`, `Private-Key`    |
      *
      * @param {Options} options - Constructor parameters type
      *
      */
 
-    constructor(options: Options = Parameter.default) {
+    constructor(options: Options) {
         this.organization = options.organization;
         this.environment = options.environment;
         this.application = options.application;
 
-        this.resource = options.resource;
+        this.service = options.service;
 
         this.identifier = options.identifier;
 
@@ -142,12 +162,13 @@ class Parameter implements Options {
      * @returns {Options}
      *
      */
+
     public format(): Options {
         return {
             organization: this.organization,
             environment: this.environment,
             application: this.application,
-            resource: this.resource,
+            service: this.service,
             identifier: this.identifier
         };
     }
@@ -157,10 +178,13 @@ class Parameter implements Options {
      * of total attributes -- return a generated string.
      *
      * @constructor
+     *
      * @type {Function}
+     *
      * @return {String}
      *
      */
+
     public string(type: Type | string = Type.Directory): string {
         /***
          * If the constructor instantiated a Parameter type with the following attributes:
@@ -187,7 +211,7 @@ class Parameter implements Options {
                 this.organization,
                 this.environment,
                 this.application,
-                this.resource
+                this.service
             ].join( (type === "Directory")
                 ? "/" : (type === "Screaming-Train-Case")
                     ? "-" : "/"
@@ -214,7 +238,7 @@ class Parameter implements Options {
          * - `organization`
          * - `environment`
          * - `application`
-         * - `resource`
+         * - `resource` or `service`
          * - `identifier`
          *
          * then construct a string, first joining an array for the initialized attributes,
@@ -235,7 +259,7 @@ class Parameter implements Options {
                 this.organization,
                 this.environment,
                 this.application,
-                this.resource,
+                this.service,
                 this.identifier
             ].join( (type === "Directory")
                 ? "/" : (type === "Screaming-Train-Case")
@@ -264,9 +288,11 @@ class Parameter implements Options {
      * ---
      *
      * @private
-     * @summary
+     *
      * @returns {Properties}
+     *
      */
+
     public enumerations(): Properties {
         return (this.identifier) ? Properties.Parameter : Properties.Default;
     }
@@ -287,6 +313,7 @@ class Parameter implements Options {
      * @return {Parameter}
      *
      */
+
     public static instantiate(value: string, debug: boolean = false): Parameter {
         const split = value.split( "/" );
 
@@ -302,7 +329,7 @@ class Parameter implements Options {
             $.message = "\n";
 
             $.message += "Invalid Number of \"/\" Separated Attributes" + "\n";
-            $.message += "  - Example: \"IBM/Production/Audit-Service/Storage/Watson-AI/Credentials\"" + "\n";
+            $.message += "  - Example: \"IBM/Production/Audit-Service/Storage/Credentials\"" + "\n";
 
             throw $;
         }
@@ -311,7 +338,7 @@ class Parameter implements Options {
             organization: split[0],
             environment: split[1],
             application: split[2],
-            resource: split[3],
+            service: split[3],
             identifier: split[4]
         } );
     }
@@ -320,15 +347,84 @@ class Parameter implements Options {
      * String -> Parameter Initializer via Selectable type
      * ---
      *
-     * Note that only `Directory` types can only be instantiated from any given string,
-     * but via the properties argument, can be instantiated from either a 4-attribute, or 5-attribute
-     * directory-separated string.
+     * Note that only `Directory` types can only be instantiated from any given string.
+     * But via the properties' argument, a parameter can be instantiated from either a
+     * 4-attribute, or 5-attribute directory-separated string.
+     *
+     * @see {@link create} for additional examples.
      *
      * @example
-     * const $ = Parameter.create("organization/environment/application/resource");
+     * // The same type as "Identifier", and contains
+     * // the following "/" separated attributes:
+     * //     - Organization
+     * //     - Environment
+     * //     - Application
+     * //     - Resource, Service, or Identifier
+     *
+     * const $ = "IBM/Production/Auditing-Platform/Authorization-Service";
+     * Parameter.create($, "Default");
      *
      * @example
-     * const $ = Parameter.create("organization/environment/application/resource/identifier");
+     * // The same type as "Identifier", and contains
+     * // the following "/" separated attributes:
+     * //     - Organization
+     * //     - Environment
+     * //     - Application
+     * //     - Resource, Service, or Identifier
+     *
+     * const $ = "IBM/Production/Auditing-Platform/Authorization-Service";
+     * Parameter.create($, "Resource");
+     *
+     * @example
+     * // The same type as "Service", and contains
+     * // the following "/" separated attributes:
+     * //     - Organization
+     * //     - Environment
+     * //     - Application
+     * //     - Resource, Service, or Identifier
+     *
+     * const $ = "IBM/Production/Auditing-Platform/Authorization-Service";
+     * Parameter.create($, "Service");
+     *
+     * @example
+     * // The Parameter-Type "Identifier", which contains
+     * // the following "/" separated attributes:
+     * //     - Organization
+     * //     - Environment
+     * //     - Application
+     * //     - Resource or Service
+     * //     - Identifier
+     *
+     * const $ = "IBM/Production/Audit-Service/Watson-AI/Credentials";
+     * Parameter.create($, "Identifier");
+     *
+     * @example
+     * // The Parameter-Type "Parameter" (same as "Identifier"), which contains
+     * // the following "/" separated attributes:
+     * //     - Organization
+     * //     - Environment
+     * //     - Application
+     * //     - Resource or Service
+     * //     - Identifier
+     *
+     * const $ = "IBM/Production/Audit-Service/Watson-AI/Credentials";
+     * Parameter.create($, "Parameter");
+     *
+     * @example
+     * // Lastly, note that `Parameter.create` `properties` defaults with the extended
+     * // parameter type `"Parameter"`; therefore, and as a recommendation,
+     * // establishing the `properties` should be omitted.
+     *
+     * const $ = "IBM/Production/Audit-Service/Watson-AI/Credentials";
+     * Parameter.create($);
+     *
+     * // All examples will then return a new `Parameter`, and depending
+     * // on the `properties` type, will contain the following attributes:
+     * //   - *.organization
+     * //   - *.environment
+     * //   - *.application
+     * //   - *.resource
+     * //   - *?.identifier
      *
      * @param {string} value
      * @param {Selectable} properties
@@ -337,7 +433,8 @@ class Parameter implements Options {
      * @return {Parameter}
      *
      */
-    public static create(value: string, properties: Selectable, debug: boolean = false): Parameter {
+
+    public static create(value: string, properties: Selectable = "Parameter", debug: boolean = false): Parameter {
         if ( properties === "Default" ) { /// 4 Total Properties
             (debug) && console.debug( "[Debug]", "Type" + ":", "Default, 4" );
 
@@ -356,7 +453,7 @@ class Parameter implements Options {
                 $.message = "\n";
 
                 $.message += "Invalid Number of \"/\" Separated Attributes" + "\n";
-                $.message += "  - Example: \"IBM/Production/Audit-Service/Credentials\"" + "\n";
+                $.message += "  - Example: \"IBM/Production/Audit-Platform/Authorization-Credentials\"" + "\n";
 
                 throw $;
             }
@@ -365,7 +462,7 @@ class Parameter implements Options {
                 organization: split[0],
                 environment: split[1],
                 application: split[2],
-                resource: split[3]
+                service: split[3]
             } );
         } else {
             if ( properties === "Identifier" || properties === "Parameter" ) { /// 5 Total Properties
@@ -386,7 +483,7 @@ class Parameter implements Options {
                     $.message = "\n";
 
                     $.message += "Invalid Number of \"/\" Separated Attributes" + "\n";
-                    $.message += "  - Example: \"IBM/Production/Audit-Service/Watson-AI/Credentials\"" + "\n";
+                    $.message += "  - Example: \"IBM/Production/Audit-Platform/Watson-AI/Credentials\"" + "\n";
 
                     throw $;
                 }
@@ -395,7 +492,7 @@ class Parameter implements Options {
                     organization: split[0],
                     environment: split[1],
                     application: split[2],
-                    resource: split[3],
+                    service: split[3],
                     identifier: split[4]
                 } );
             } else {
@@ -410,35 +507,47 @@ interface Options {
      * organization - Target Deliverable Maintainer
      *
      * @type {string}
+     *
      */
+
     organization: string;
 
     /***
      * environment - Network (L2) Seperated Alias
      *
      * @type {string}
+     *
      */
+
     environment: string;
 
     /***
      * application - Stack, Functional Purpose, or Common-Name
      *
      * @type {string}
+     *
      */
+
     application: string;
 
     /***
-     * resource - Descriptive Identifier
+     * service - Descriptive Identifier Key-Word, typically used to describe:
+     *     - A Cloud Resource
+     *     - A Service
      *
      * @type {string}
+     *
      */
-    resource: string;
+
+    service: string;
 
     /***
      * identifier - Additional, Optional String
      *
      * @type {string|null|undefined}
+     *
      */
+
     identifier?: string | undefined;
 }
 

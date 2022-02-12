@@ -1,7 +1,7 @@
 import Utility from "util";
 
 describe( "Unit Test (Parameter)", () => {
-    const input = "organization/environment/application/resource/identifier";
+    const input = "organization/environment/application/service/identifier";
 
     it("Generator", async () => {
         const Import = await import("@cloud-technology/parameter");
@@ -43,14 +43,14 @@ describe( "Unit Test (Parameter)", () => {
         expect(instance.application).toEqual("application");
     });
 
-    it("Resource", async () => {
+    it("Service", async () => {
         const Import = await import("@cloud-technology/parameter");
 
         const instance = Import.Parameter.create(input, "Parameter");
 
-        console.log("Resource", Utility.inspect(instance, { colors: true }));
+        console.log("service", Utility.inspect(instance, { colors: true }));
 
-        expect(instance.resource).toEqual("resource");
+        expect(instance.service).toEqual("service");
     });
 
     it("Identifier", async () => {
@@ -75,7 +75,7 @@ describe( "Unit Test (Parameter)", () => {
 } );
 
 describe( "Unit Test (Identifier)", () => {
-    const input = "organization/environment/application/resource/identifier";
+    const input = "organization/environment/application/service/identifier";
 
     it("Generator", async () => {
         const Import = await import("@cloud-technology/parameter");
@@ -117,14 +117,14 @@ describe( "Unit Test (Identifier)", () => {
         expect(instance.application).toEqual("application");
     });
 
-    it("Resource", async () => {
+    it("Service", async () => {
         const Import = await import("@cloud-technology/parameter");
 
         const instance = Import.Parameter.create(input, "Identifier");
 
-        console.log("Resource", Utility.inspect(instance, { colors: true }));
+        console.log("service", Utility.inspect(instance, { colors: true }));
 
-        expect(instance.resource).toEqual("resource");
+        expect(instance.service).toEqual("service");
     });
 
     it("Identifier", async () => {
@@ -149,7 +149,7 @@ describe( "Unit Test (Identifier)", () => {
 } );
 
 describe( "Unit Test (Default)", () => {
-    const input = "organization/environment/application/resource";
+    const input = "organization/environment/application/service";
 
     it("Generator", async () => {
         const Import = await import("@cloud-technology/parameter");
@@ -191,14 +191,14 @@ describe( "Unit Test (Default)", () => {
         expect(instance.application).toEqual("application");
     });
 
-    it("Resource", async () => {
+    it("Service", async () => {
         const Import = await import("@cloud-technology/parameter");
 
         const instance = Import.Parameter.create(input, "Default");
 
-        console.log("Resource", Utility.inspect(instance, { colors: true }));
+        console.log("service", Utility.inspect(instance, { colors: true }));
 
-        expect(instance.resource).toEqual("resource");
+        expect(instance.service).toEqual("service");
     });
 
     it("Properties", async () => {

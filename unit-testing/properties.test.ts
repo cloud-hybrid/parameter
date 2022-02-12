@@ -7,7 +7,7 @@ describe( "Unit Test", () => {
         organization: "organization",
         environment: "environment",
         application: "application",
-        resource: "resource",
+        service: "service",
         identifier: "identifier"
     });
 
@@ -16,7 +16,7 @@ describe( "Unit Test", () => {
     it("Organization", () => expect(parameter).toHaveProperty("organization"));
     it("Environment", () => expect(parameter).toHaveProperty("environment"));
     it("Application", () =>expect(parameter).toHaveProperty("application"));
-    it("Resource", () => expect(parameter).toHaveProperty("resource"));
+    it("Service", () => expect(parameter).toHaveProperty("service"));
     it("Identifier", () => expect(parameter).toHaveProperty("identifier"));
 
     it("Module", async () => {

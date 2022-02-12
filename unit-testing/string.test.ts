@@ -7,7 +7,7 @@ describe( "String Unit Test", () => {
         organization: "organization",
         environment: "environment",
         application: "application",
-        resource: "resource",
+        service: "service",
         identifier: "identifier"
     } );
 
@@ -16,7 +16,7 @@ describe( "String Unit Test", () => {
         expect( parameter ).toHaveProperty( "organization" );
         expect( parameter ).toHaveProperty( "environment" );
         expect( parameter ).toHaveProperty( "application" );
-        expect( parameter ).toHaveProperty( "resource" );
+        expect( parameter ).toHaveProperty( "service" );
         expect( parameter ).toHaveProperty( "identifier" );
     } );
 
@@ -54,7 +54,7 @@ describe( "String Unit Test", () => {
         organization: "organization",
         environment: "environment",
         application: "application",
-        resource: "resource"
+        service: "service"
     } );
 
     /*** Attributes */
@@ -62,7 +62,7 @@ describe( "String Unit Test", () => {
         expect( Default ).toHaveProperty( "organization" );
         expect( Default ).toHaveProperty( "environment" );
         expect( Default ).toHaveProperty( "application" );
-        expect( Default ).toHaveProperty( "resource" );
+        expect( Default ).toHaveProperty( "service" );
 
         expect( Default.identifier ).toBeFalsy();
     } );
@@ -101,7 +101,7 @@ describe( "String Unit Test", () => {
         organization: "organization",
         environment: "environment",
         application: "application",
-        resource: "resource",
+        service: "service",
         identifier: "identifier"
     } );
 
@@ -110,7 +110,7 @@ describe( "String Unit Test", () => {
         expect( Identifier ).toHaveProperty( "organization" );
         expect( Identifier ).toHaveProperty( "environment" );
         expect( Identifier ).toHaveProperty( "application" );
-        expect( Identifier ).toHaveProperty( "resource" );
+        expect( Identifier ).toHaveProperty( "service" );
         expect( Identifier ).toHaveProperty( "identifier" );
     } );
 

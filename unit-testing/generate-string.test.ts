@@ -3,7 +3,7 @@ import Utility from "util";
 import { Parameter } from "@cloud-technology/parameter";
 
 describe( "Unit Test", () => {
-    const input = "organization/environment/application/resource/identifier";
+    const input = "organization/environment/application/service/identifier";
 
     it("Generator", async () => {
         const instance = Parameter.instantiate(input);
@@ -37,12 +37,12 @@ describe( "Unit Test", () => {
         expect(instance.application).toEqual("application");
     });
 
-    it("Resource", async () => {
+    it("Service", async () => {
         const instance = Parameter.instantiate(input);
 
-        console.log("Resource", Utility.inspect(instance, { colors: true }));
+        console.log("service", Utility.inspect(instance, { colors: true }));
 
-        expect(instance.resource).toEqual("resource");
+        expect(instance.service).toEqual("service");
     });
 
     it("Identifier", async () => {

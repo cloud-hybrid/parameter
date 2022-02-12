@@ -21,7 +21,7 @@ function Scream(input: string) {
  * String-Type-Casing
  * ---
  *
- * Similar to a Type-Cast, Cast the String into a Screaming-Train-Case String.
+ * Similar to a Type-Cast, Cast the String into a Train-Case String.
  *
  * @param input {string}
  * @param options {string}

@@ -1,7 +1,7 @@
 {
     "name": "@cloud-technology/parameter",
     "private": false,
-    "version": "0.5.131",
+    "version": "0.6.135",
     "type": "module",
     "main": "index.js",
     "description": "Base Parameter Type-Interface via Node.js",
