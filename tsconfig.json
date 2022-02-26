@@ -24,7 +24,7 @@
         "baseUrl": ".",
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
-        "exactOptionalPropertyTypes": true,
+        "exactOptionalPropertyTypes": false,
         "preserveWatchOutput": false,
         "forceConsistentCasingInFileNames": true,
         "assumeChangesOnlyAffectDirectDependencies": false,

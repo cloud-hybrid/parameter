@@ -1,7 +1,7 @@
 {
     "name": "@cloud-technology/parameter",
     "private": false,
-    "version": "0.6.135",
+    "version": "0.7.141",
     "type": "module",
     "main": "index.js",
     "description": "Base Parameter Type-Interface via Node.js",
@@ -29,19 +29,12 @@
         "@jest/globals": "latest",
         "@types/jest": "latest",
         "@types/node": "latest",
-        "@typescript-eslint/eslint-plugin": "latest",
-        "@typescript-eslint/experimental-utils": "latest",
-        "@typescript-eslint/parser": "latest",
-        "@typescript-eslint/scope-manager": "latest",
-        "@typescript-eslint/type-utils": "latest",
-        "@typescript-eslint/typescript-estree": "latest",
         "eslint": "latest",
         "jest": "latest",
         "ts-jest": "latest",
         "ts-node": "latest",
         "tslib": "latest",
-        "typescript": "latest",
-        "typescript-eslint-language-service": "latest"
+        "typescript": "latest"
     },
     "eslintConfig": {
         "parser": "@typescript-eslint/parser",
@@ -73,9 +66,6 @@
             "distribution",
             "node_modules"
         ]
-    },
-    "exports": {
-        ".": "./index.js"
     },
     "bin": {
         "parameter": "unit-testing/index.js"

@@ -47,24 +47,24 @@ describe( "String Unit Test", () => {
     it( "Enumeration", async () => {
         const $ = parameter.enumerations();
         console.log( "Directory" + ":", Utility.inspect( $, { colors: true } ) );
-        expect( $ ).toEqual( Properties.Parameter );
+        expect( $ ).toEqual( Properties.Extended );
     } );
 
     const Default = new Parameter( {
         organization: "organization",
         environment: "environment",
-        application: "application",
-        service: "service"
+        service: "service",
+        identifier: "identifier"
     } );
 
     /*** Attributes */
     it( "Attributes", async () => {
         expect( Default ).toHaveProperty( "organization" );
         expect( Default ).toHaveProperty( "environment" );
-        expect( Default ).toHaveProperty( "application" );
         expect( Default ).toHaveProperty( "service" );
+        expect( Default ).toHaveProperty( "identifier" );
 
-        expect( Default.identifier ).toBeFalsy();
+        expect( Default.application ).toBeFalsy();
     } );
 
     it( "Default", async () => {
@@ -94,7 +94,7 @@ describe( "String Unit Test", () => {
     it( "Enumeration", async () => {
         const $ = Default.enumerations();
         console.log( "Directory" + ":", Utility.inspect( $, { colors: true } ) );
-        expect( $ ).toEqual( Properties.Default );
+        expect( $ ).toEqual( Properties.Base );
     } );
 
     const Identifier = new Parameter( {
@@ -141,7 +141,7 @@ describe( "String Unit Test", () => {
     it( "Enumeration", async () => {
         const $ = Identifier.enumerations();
         console.log( "Directory" + ":", Utility.inspect( $, { colors: true } ) );
-        expect( $ ).toEqual( Properties.Identifier );
+        expect( $ ).toEqual( Properties.Extended );
     } );
 
 } );

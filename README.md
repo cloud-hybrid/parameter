@@ -1,6 +1,18 @@
 # `@cloud-technology/parameter` #
 
-*A Zero-Dependency Type-Interface via Node.js*
+*A Zero-Dependency "Type-Interface" via Node.js*
+
+While intentionally ambiguous, `parameter` extends a primitive string. Specifically,
+the following utility methods are available to the `Parameter` class:
+
+- `Parameter.format()`
+- `Parameter.string()`
+- `Parameter.enumerations()`
+- `Parameter.instantiate()`
+- `Parameter.create()`
+
+to follow an opinionated convention
+to be used in cloud-related 
 
 Parameters often used during configuration can be a difficult concept to standardize.
 
@@ -17,11 +29,18 @@ extensions include usages with:
 
 ## Table of Contents ##
 
+- [Type-Interface](#type-interface)
 - [Usage](#usage)
     - [Development](#development)
     - [Common-JS](#common-js)
     - [Modules](#modules)
 - [Documentation](#documentation)
+
+## Type-Interface ##
+
+What is meant by "Type-Interface" is welcome to interpretation. However, the intended definition is as follows:
+
+***A primitive data-type, with special utility functions and methods***.
 
 ## Usage ##
 

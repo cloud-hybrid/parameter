@@ -25,25 +25,45 @@ enum Type {
  * Properties Enumeration
  * ---
  *
- * @public
+ * A simple enumeration that aliases the property `Base` to a constant
+ * numerical value of `4`, and another `Extended`, which evaluates out to
+ * a constant numerical value of `5`.
  *
- * @property {number} Default - Number of Properties used with Parameter.default Constructor.
- * @property {number} Identifier - Number of Properties used with inclusion of Identifier.
- * @property {number} Parameter - Number of Properties used with a Full Parameter constructor call.
+ * These assignments are fairly arbitrary, and only aim to provide aliasing
+ * to numerical values in certain cloud-related usage & context.
+ *
+ * @property {number} Service
+ * @property {number} Identifier
+ * @property {number} Parameter
  *
  */
 
 enum Properties {
-    /*** Number of Properties used with Parameter.Default Constructor */
-    Default = 4,
-    /*** Number of Properties used with Parameter.Resource Constructor */
-    Resource = 4,
-    /*** Number of Properties used with Parameter.Service Constructor */
-    Service = 4,
-    /*** Number of Properties used with inclusion of Identifier */
-    Identifier = 5,
-    /*** Number of Properties used with a Full Parameter constructor call */
-    Parameter = 5
+    /***
+     * The number of properties used to describe a default, or base
+     * parameter type. Typically, these parameters include references to:
+     * - Organization or business unit
+     * - Environment
+     * - Service
+     * - A Resource-related identifier or name
+     *
+     * @type {Properties.Base}
+     *
+     */
+    Base = 4,
+    /***
+     * The number of properties used to describe an extended parameter type.
+     * Typically, these parameters include references to:
+     * - Organization or business unit
+     * - Environment
+     * - Application
+     * - Service
+     * - A Resource-related identifier or name
+     *
+     * @type {Properties.Extended}
+     *
+     */
+    Extended = 5
 }
 
 type Selectable = keyof typeof Properties;
@@ -96,11 +116,11 @@ class Parameter implements Options {
     /***
      * application - Stack, Functional Purpose, or Common-Name
      *
-     * @type {string}
+     * @type {string | undefined}
      *
      */
 
-    application: string;
+    application?: string | undefined;
 
     /***
      * service - Descriptive Identifier Key-Word, typically used to describe:
@@ -113,17 +133,14 @@ class Parameter implements Options {
 
     service: string;
 
-
     /***
      * identifier - Additional, Optional String
      *
-     * @type {string|null|undefined}
+     * @type {string}
      *
      */
 
-    identifier?: string | undefined;
-
-    properties: Properties;
+    identifier: string;
 
     /***
      *
@@ -131,25 +148,22 @@ class Parameter implements Options {
      * |:---------------------------:|:--------------:|:-----------------------------------------:|:-------------------------------:|
      * |        **Organization**     |   *Required*   |                    ...                    |              `IBM`              |
      * |         **Environment**     |   *Required*   |       Network (L2) Seperated Alias        |    `Development`, `Production`  |
-     * |        **Application**      |   *Required*   | Stack, Functional Purpose, or Common-Name |    `Financial-Audit-Service`    |
-     * |          **Service**        |   *Required*   | Distributed System, Infrastructure, or ID | `Mongo-DB`, `S3`, `Credentials` |
+     * |        **Application**      |   *Optional*   | Stack, Functional Purpose, or Common-Name |    `Financial-Audit-Service`    |
+     * |          **Service**        |   *Optional*   | Distributed System, Infrastructure, or ID | `Mongo-DB`, `S3`, `Credentials` |
      * |        **Identifier**       |   *Optional*   |        Additional, Optional String        |      `VPC-ID`, `Private-Key`    |
      *
      * @param {Options} options - Constructor parameters type
      *
      */
 
-    constructor(options: Options) {
+    constructor( options: Options ) {
         this.organization = options.organization;
         this.environment = options.environment;
-        this.application = options.application;
-
+        this.application = options?.application;
         this.service = options.service;
-
         this.identifier = options.identifier;
 
-        /*** Utility Properties */
-        this.properties = this.enumerations();
+        if ( !options?.application ) delete this.application;
     }
 
     /***
@@ -164,123 +178,66 @@ class Parameter implements Options {
      */
 
     public format(): Options {
-        return {
-            organization: this.organization,
-            environment: this.environment,
-            application: this.application,
-            service: this.service,
-            identifier: this.identifier
-        };
+        return this;
     }
 
     /***
-     * Evaluate the instantiated Parameter type according to the number
-     * of total attributes -- return a generated string.
+     * Construct a string, first joining an array for the initialized attributes,
+     * according to either a `"Directory"`, `"Train-Case"`, or `"Screaming-Train-Case"`
+     * string convention.
+     *
+     * Note that only the following string-constants are allowed as `type`:
+     *
+     * - "Directory"
+     * - "Screaming-Train-Case"
+     * - "Train-Case"
+     *
+     * `"Directory"` is defaulted.
+     *
+     * Additionally, using train-case generated strings should be very selectively used; for example, if
+     * a user is defining a large abstract representation of constructs, such as an AWS Cloudformation Stack,
+     * then can Train-Case be used for the Stack name. When using Train-Case, most functionality is forgone
+     * as arbitrary number of dash-separated words cannot be assumed to derive categorical attributes.
      *
      * @constructor
      *
-     * @type {Function}
+     * @param type {"Directory" | "Screaming-Train-Case" | "Train-Case"}
+     *
+     * @param prefix {"/" | undefined }
      *
      * @return {String}
      *
      */
 
-    public string(type: Type | string = Type.Directory): string {
-        /***
-         * If the constructor instantiated a Parameter type with the following attributes:
-         * - `organization`
-         * - `environment`
-         * - `application`
-         * - `resource`
-         *
-         * then construct a string, first joining an array for the initialized attributes,
-         * according to either a `"Directory"`, `"Train-Case"`, or `"Screaming-Train-Case"`
-         * string convention.
-         *
-         * @type {string}
-         *
-         */
-        if ( this.properties === 4 ) {
-            /***
-             * A temporary variable used to construct a string according
-             * to the `"Type"` and `"Property"` enumeration.
-             *
-             * @type {string}
-             */
-            const property: string = [
-                this.organization,
-                this.environment,
-                this.application,
-                this.service
-            ].join( (type === "Directory")
-                ? "/" : (type === "Screaming-Train-Case")
-                    ? "-" : "/"
-            );
+    public string( type: Type | string = Type.Directory, prefix?: "/" ): string {
+        const keys: string[] = [];
 
-            /***
-             * String cast to user-defined convention of one of the following:
-             * - Directory = "Directory",
-             * - Train = "Screaming-Train-Case",
-             * - Dash = "Train-Case"
-             *
-             * @type {string}
-             */
-            const cast: string = Case( property, { condense: false } );
+        Object.keys( this ).forEach( ( $ ) => {
+            const value = Reflect.get( this, $ );
+            if ( value !== undefined ) keys.push( value );
+        } );
 
-            /*** Return a potentially titled string, capitalizing according to type */
-            return (type === "Screaming-Train-Case") ? Title( cast )
-                : (type === "Train-Case") ? cast
-                    : property;
-        }
+        const property = keys.join( ( type === "Directory" )
+            ? "/" : ( type === "Screaming-Train-Case" )
+                ? "-" : "/"
+        );
 
         /***
-         * If the constructor instantiated a Parameter type with the following attributes:
-         * - `organization`
-         * - `environment`
-         * - `application`
-         * - `resource` or `service`
-         * - `identifier`
-         *
-         * then construct a string, first joining an array for the initialized attributes,
-         * according to either a `"Directory"`, `"Train-Case"`, or `"Screaming-Train-Case"`
-         * string convention.
+         * String cast to user-defined convention of one of the following:
+         * - Directory = "Directory",
+         * - Train = "Screaming-Train-Case",
+         * - Dash = "Train-Case"
          *
          * @type {string}
-         *
          */
-        else {
-            /***
-             * A temporary variable used to construct a string according
-             * to the `"Type"` and `"Property"` enumeration.
-             *
-             * @type {string}
-             */
-            const property: string = [
-                this.organization,
-                this.environment,
-                this.application,
-                this.service,
-                this.identifier
-            ].join( (type === "Directory")
-                ? "/" : (type === "Screaming-Train-Case")
-                    ? "-" : "/"
-            );
+        const cast: string = Case( property, { condense: true } );
 
-            /***
-             * String cast to user-defined convention of one of the following:
-             * - Directory = "Directory",
-             * - Train = "Screaming-Train-Case",
-             * - Dash = "Train-Case"
-             *
-             * @type {string}
-             */
-            const cast: string = Case( property, { condense: false } );
+        /*** Return a potentially titled string, capitalizing according to type */
+        const $ = ( type === "Screaming-Train-Case" ) ? Title( cast )
+            : ( type === "Train-Case" ) ? cast
+                : property;
 
-            /*** Return a potentially titled string, capitalizing according to type */
-            return (type === "Screaming-Train-Case") ? Title( cast )
-                : (type === "Train-Case") ? cast
-                    : property;
-        }
+        return ( prefix ) ? prefix + $ : $;
     }
 
     /***
@@ -294,18 +251,66 @@ class Parameter implements Options {
      */
 
     public enumerations(): Properties {
-        return (this.identifier) ? Properties.Parameter : Properties.Default;
+        return this.string( Type.Directory ).split( "/" ).length;
     }
 
     /***
      * String -> Parameter Initializer
      * ---
      *
-     * Note that only `Directory` types can only be instantiated from any given string,
+     * Note that only `Directory` types can be instantiated from any given string,
      * and only a full 5-attribute Parameter type is compatible.
      *
+     * The intention behind the following utility, static method is to create a new `Parameter`
+     * type via an assumed compatible string.
+     *
+     * For example, if an AWS SSM Parameter was attributed its name via "organization/environment/application/resource/identifier"
+     * naming convention, it can be safely assumed that `Parameter.instantiate` will then create a new serialized Parameter object.
+     * Such can be useful when filtering or serializing a long list of configuration parameters. On perhaps a more theoretical
+     * level, deriving a file-system-like object from a simple string can be thought of as a B++ Tree:
+     *
+     *      > The primary value of a B+ tree is in storing data for efficient retrieval in a block-oriented storage
+     *      > context — in particular, filesystems. This is primarily because unlike binary search trees, B+ trees have very
+     *      > high fanout (number of pointers to child nodes in a node typically on the order of 100 or more), which reduces the
+     *      > number of I/O operations required to find an element in the tree.
+     *
+     * Clouds can include millions of parameters that define infrastructure or application configuration -- using a common convention via
+     * a globally unique string facilitates filtering, serialization, interfacing, and human readability.
+     *
      * @example
-     * const $ = Parameter.instantiate("organization/environment/application/resource/identifier");
+     * /// An "Extended" Parameter Type
+     * const parameter = Parameter.instantiate("organization/environment/application/service/identifier");
+     *
+     * console.log(parameter.organization);
+     * console.log(parameter.environment);
+     * ...
+     *
+     * console.log(parameter);
+     *
+     * >>> // Identifier Parameter {
+     * >>> //     organization: 'organization',
+     * >>> //     environment: 'environment',
+     * >>> //     application: 'application',
+     * >>> //     service: 'service',
+     * >>> //     identifier: 'identifier'
+     * >>> // }
+     *
+     * @example
+     * /// A "Base" (No Application) Parameter Type
+     * const parameter = Parameter.instantiate("organization/environment/service/identifier");
+     *
+     * console.log(parameter.organization);
+     * console.log(parameter.environment);
+     * ...
+     *
+     * console.log(parameter);
+     *
+     * >>> // Identifier Parameter {
+     * >>> //     organization: 'organization',
+     * >>> //     environment: 'environment',
+     * >>> //     service: 'service',
+     * >>> //     identifier: 'identifier'
+     * >>> // }
      *
      * @param {string} value
      * @param {boolean} debug
@@ -314,191 +319,54 @@ class Parameter implements Options {
      *
      */
 
-    public static instantiate(value: string, debug: boolean = false): Parameter {
+    public static initialize( value: string, debug: boolean = false ): Parameter {
+        const prefix = ( value[0] === "/" ) ? "/" : "";
+
+        if ( prefix ) value = value.slice( 1 );
+
         const split = value.split( "/" );
 
-        (debug) && console.debug( "[Debug]", "Properties" + ":", split );
+        ( debug ) && console.debug( "[Debug]", "Properties" + ":", split );
 
-        const enumerable = (split.length === Properties.Parameter);
-
-        (debug) && console.debug( "[Debug]", "Enumerable" + ":", enumerable );
-
-        if ( !enumerable ) {
-            const $ = new Error( "Parameter-Enumeration-Error" );
-            $.name = "Parameter-Enumeration-Error";
-            $.message = "\n";
-
-            $.message += "Invalid Number of \"/\" Separated Attributes" + "\n";
-            $.message += "  - Example: \"IBM/Production/Audit-Service/Storage/Credentials\"" + "\n";
-
-            throw $;
-        }
-
-        return new Parameter( {
-            organization: split[0],
-            environment: split[1],
-            application: split[2],
-            service: split[3],
-            identifier: split[4]
-        } );
-    }
-
-    /***
-     * String -> Parameter Initializer via Selectable type
-     * ---
-     *
-     * Note that only `Directory` types can only be instantiated from any given string.
-     * But via the properties' argument, a parameter can be instantiated from either a
-     * 4-attribute, or 5-attribute directory-separated string.
-     *
-     * @see {@link create} for additional examples.
-     *
-     * @example
-     * // The same type as "Identifier", and contains
-     * // the following "/" separated attributes:
-     * //     - Organization
-     * //     - Environment
-     * //     - Application
-     * //     - Resource, Service, or Identifier
-     *
-     * const $ = "IBM/Production/Auditing-Platform/Authorization-Service";
-     * Parameter.create($, "Default");
-     *
-     * @example
-     * // The same type as "Identifier", and contains
-     * // the following "/" separated attributes:
-     * //     - Organization
-     * //     - Environment
-     * //     - Application
-     * //     - Resource, Service, or Identifier
-     *
-     * const $ = "IBM/Production/Auditing-Platform/Authorization-Service";
-     * Parameter.create($, "Resource");
-     *
-     * @example
-     * // The same type as "Service", and contains
-     * // the following "/" separated attributes:
-     * //     - Organization
-     * //     - Environment
-     * //     - Application
-     * //     - Resource, Service, or Identifier
-     *
-     * const $ = "IBM/Production/Auditing-Platform/Authorization-Service";
-     * Parameter.create($, "Service");
-     *
-     * @example
-     * // The Parameter-Type "Identifier", which contains
-     * // the following "/" separated attributes:
-     * //     - Organization
-     * //     - Environment
-     * //     - Application
-     * //     - Resource or Service
-     * //     - Identifier
-     *
-     * const $ = "IBM/Production/Audit-Service/Watson-AI/Credentials";
-     * Parameter.create($, "Identifier");
-     *
-     * @example
-     * // The Parameter-Type "Parameter" (same as "Identifier"), which contains
-     * // the following "/" separated attributes:
-     * //     - Organization
-     * //     - Environment
-     * //     - Application
-     * //     - Resource or Service
-     * //     - Identifier
-     *
-     * const $ = "IBM/Production/Audit-Service/Watson-AI/Credentials";
-     * Parameter.create($, "Parameter");
-     *
-     * @example
-     * // Lastly, note that `Parameter.create` `properties` defaults with the extended
-     * // parameter type `"Parameter"`; therefore, and as a recommendation,
-     * // establishing the `properties` should be omitted.
-     *
-     * const $ = "IBM/Production/Audit-Service/Watson-AI/Credentials";
-     * Parameter.create($);
-     *
-     * // All examples will then return a new `Parameter`, and depending
-     * // on the `properties` type, will contain the following attributes:
-     * //   - *.organization
-     * //   - *.environment
-     * //   - *.application
-     * //   - *.resource
-     * //   - *?.identifier
-     *
-     * @param {string} value
-     * @param {Selectable} properties
-     * @param {boolean} debug
-     *
-     * @return {Parameter}
-     *
-     */
-
-    public static create(value: string, properties: Selectable = "Parameter", debug: boolean = false): Parameter {
-        if ( properties === "Default" ) { /// 4 Total Properties
-            (debug) && console.debug( "[Debug]", "Type" + ":", "Default, 4" );
-
-            const split = value.split( "/" );
-
-            (debug) && console.debug( "[Debug]", "Properties" + ":", split );
-
-            const enumerable = (split.length === Properties.Default);
-
-            (debug) && console.debug( "[Debug]", "Enumerable" + ":", enumerable );
-
-            /*** No Identifier Type */
-            if ( !enumerable ) { /// Only should contain 4 directories
-                const $ = new Error( "Parameter-Enumeration-Error" );
-                $.name = "Parameter-Enumeration-Error";
-                $.message = "\n";
-
-                $.message += "Invalid Number of \"/\" Separated Attributes" + "\n";
-                $.message += "  - Example: \"IBM/Production/Audit-Platform/Authorization-Credentials\"" + "\n";
-
-                throw $;
-            }
-
-            return new Parameter( {
-                organization: split[0],
-                environment: split[1],
-                application: split[2],
-                service: split[3]
-            } );
-        } else {
-            if ( properties === "Identifier" || properties === "Parameter" ) { /// 5 Total Properties
-                (debug) && console.debug( "[Debug]", "Type" + ":", "Identifier, 5" );
-
-                const split = value.split( "/" );
-
-                (debug) && console.debug( "[Debug]", "Properties" + ":", split );
-
-                const enumerable = (split.length === Properties.Parameter || split.length === Properties.Identifier);
-
-                (debug) && console.debug( "[Debug]", "Enumerable" + ":", enumerable );
-
-                /*** No Identifier Type */
-                if ( !enumerable ) { /// Only should contain 5 directories
+        const enumerable = () => {
+            switch ( split.length ) {
+                case Properties.Base:
+                    /// Omission of Application
+                    return new Parameter( {
+                        organization: split[0],
+                        environment: split[1],
+                        service: split[2],
+                        identifier: split[3]
+                    } );
+                case Properties.Extended:
+                    return new Parameter( {
+                        organization: split[0],
+                        environment: split[1],
+                        application: split[2],
+                        service: split[3],
+                        identifier: split[4]
+                    } );
+                default:
                     const $ = new Error( "Parameter-Enumeration-Error" );
+
                     $.name = "Parameter-Enumeration-Error";
                     $.message = "\n";
 
                     $.message += "Invalid Number of \"/\" Separated Attributes" + "\n";
-                    $.message += "  - Example: \"IBM/Production/Audit-Platform/Watson-AI/Credentials\"" + "\n";
+                    $.message += "  - Service Example: \"Organization/Environment/Service/Identifier\"" + "\n";
+                    $.message += "  - Application Example: \"Organization/Environment/Application/Service/Identifier\"" + "\n";
 
                     throw $;
-                }
-
-                return new Parameter( {
-                    organization: split[0],
-                    environment: split[1],
-                    application: split[2],
-                    service: split[3],
-                    identifier: split[4]
-                } );
-            } else {
-                return Parameter.instantiate( value, debug );
             }
-        }
+        };
+
+        const evaluation = enumerable();
+
+        const valid = ( evaluation ) && true || false;
+
+        ( debug ) && console.debug( "[Debug]", "Enumerable" + ":", valid, evaluation );
+
+        return evaluation;
     }
 }
 
@@ -524,11 +392,11 @@ interface Options {
     /***
      * application - Stack, Functional Purpose, or Common-Name
      *
-     * @type {string}
+     * @type {string | undefined}
      *
      */
 
-    application: string;
+    application?: string | undefined;
 
     /***
      * service - Descriptive Identifier Key-Word, typically used to describe:
@@ -544,11 +412,11 @@ interface Options {
     /***
      * identifier - Additional, Optional String
      *
-     * @type {string|null|undefined}
+     * @type {string}
      *
      */
 
-    identifier?: string | undefined;
+    identifier: string;
 }
 
 export type { Options };

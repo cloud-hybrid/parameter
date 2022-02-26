@@ -6,7 +6,7 @@ describe( "Unit Test", () => {
     const input = "organization/environment/application/service/identifier";
 
     it("Generator", async () => {
-        const instance = Parameter.instantiate(input);
+        const instance = Parameter.initialize(input);
 
         console.log("Instance", Utility.inspect(instance, { colors: true }));
 
@@ -14,7 +14,7 @@ describe( "Unit Test", () => {
     });
 
     it("Organization", async () => {
-        const instance = Parameter.instantiate(input);
+        const instance = Parameter.initialize(input);
 
         console.log("Organization", Utility.inspect(instance, { colors: true }));
 
@@ -22,7 +22,7 @@ describe( "Unit Test", () => {
     });
 
     it("Environment", async () => {
-        const instance = Parameter.instantiate(input);
+        const instance = Parameter.initialize(input);
 
         console.log("Environment", Utility.inspect(instance, { colors: true }));
 
@@ -30,7 +30,7 @@ describe( "Unit Test", () => {
     });
 
     it("Application", async () => {
-        const instance = Parameter.instantiate(input);
+        const instance = Parameter.initialize(input);
 
         console.log("Application", Utility.inspect(instance, { colors: true }));
 
@@ -38,7 +38,7 @@ describe( "Unit Test", () => {
     });
 
     it("Service", async () => {
-        const instance = Parameter.instantiate(input);
+        const instance = Parameter.initialize(input);
 
         console.log("service", Utility.inspect(instance, { colors: true }));
 
@@ -46,7 +46,7 @@ describe( "Unit Test", () => {
     });
 
     it("Identifier", async () => {
-        const instance = Parameter.instantiate(input);
+        const instance = Parameter.initialize(input);
 
         console.log("Identifier", Utility.inspect(instance, { colors: true }));
 
@@ -54,10 +54,10 @@ describe( "Unit Test", () => {
     });
 
     it("Properties", async () => {
-        const instance = Parameter.instantiate(input);
+        const instance = Parameter.initialize(input);
 
         console.log("Properties", Utility.inspect(instance, { colors: true }));
 
-        expect(instance.properties).toEqual(5);
+        expect(instance.string().split("/").length).toEqual(5);
     });
 } );

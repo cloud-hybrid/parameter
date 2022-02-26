@@ -1,12 +1,12 @@
 import Utility from "util";
 
-describe( "Unit Test (Parameter)", () => {
+describe( "Unit Test (Extended)", () => {
     const input = "organization/environment/application/service/identifier";
 
     it("Generator", async () => {
         const Import = await import("@cloud-technology/parameter");
 
-        const instance = Import.Parameter.create(input, "Parameter");
+        const instance = Import.Parameter.initialize(input, true);
 
         console.log("Instance", Utility.inspect(instance, { colors: true }));
 
@@ -16,7 +16,7 @@ describe( "Unit Test (Parameter)", () => {
     it("Organization", async () => {
         const Import = await import("@cloud-technology/parameter");
 
-        const instance = Import.Parameter.create(input, "Parameter");
+        const instance = Import.Parameter.initialize(input, true);
 
         console.log("Organization", Utility.inspect(instance, { colors: true }));
 
@@ -26,7 +26,7 @@ describe( "Unit Test (Parameter)", () => {
     it("Environment", async () => {
         const Import = await import("@cloud-technology/parameter");
 
-        const instance = Import.Parameter.create(input, "Parameter");
+        const instance = Import.Parameter.initialize(input, true);
 
         console.log("Environment", Utility.inspect(instance, { colors: true }));
 
@@ -36,7 +36,7 @@ describe( "Unit Test (Parameter)", () => {
     it("Application", async () => {
         const Import = await import("@cloud-technology/parameter");
 
-        const instance = Import.Parameter.create(input, "Parameter");
+        const instance = Import.Parameter.initialize(input, true);
 
         console.log("Application", Utility.inspect(instance, { colors: true }));
 
@@ -46,7 +46,7 @@ describe( "Unit Test (Parameter)", () => {
     it("Service", async () => {
         const Import = await import("@cloud-technology/parameter");
 
-        const instance = Import.Parameter.create(input, "Parameter");
+        const instance = Import.Parameter.initialize(input, true);
 
         console.log("service", Utility.inspect(instance, { colors: true }));
 
@@ -56,7 +56,7 @@ describe( "Unit Test (Parameter)", () => {
     it("Identifier", async () => {
         const Import = await import("@cloud-technology/parameter");
 
-        const instance = Import.Parameter.create(input, "Parameter");
+        const instance = Import.Parameter.initialize(input, true);
 
         console.log("Identifier", Utility.inspect(instance, { colors: true }));
 
@@ -66,21 +66,21 @@ describe( "Unit Test (Parameter)", () => {
     it("Properties", async () => {
         const Import = await import("@cloud-technology/parameter");
 
-        const instance = Import.Parameter.create(input, "Parameter");
+        const instance = Import.Parameter.initialize(input, true);
 
         console.log("Properties", Utility.inspect(instance, { colors: true }));
 
-        expect(instance.properties).toEqual(5);
+        expect(instance.string().split("/").length).toEqual(5);
     });
 } );
 
-describe( "Unit Test (Identifier)", () => {
-    const input = "organization/environment/application/service/identifier";
+describe( "Unit Test (Base)", () => {
+    const input = "organization/environment/service/identifier";
 
     it("Generator", async () => {
         const Import = await import("@cloud-technology/parameter");
 
-        const instance = Import.Parameter.create(input, "Identifier");
+        const instance = Import.Parameter.initialize(input, true);
 
         console.log("Instance", Utility.inspect(instance, { colors: true }));
 
@@ -90,7 +90,7 @@ describe( "Unit Test (Identifier)", () => {
     it("Organization", async () => {
         const Import = await import("@cloud-technology/parameter");
 
-        const instance = Import.Parameter.create(input, "Identifier");
+        const instance = Import.Parameter.initialize(input, true);
 
         console.log("Organization", Utility.inspect(instance, { colors: true }));
 
@@ -100,27 +100,17 @@ describe( "Unit Test (Identifier)", () => {
     it("Environment", async () => {
         const Import = await import("@cloud-technology/parameter");
 
-        const instance = Import.Parameter.create(input, "Identifier");
+        const instance = Import.Parameter.initialize(input, true);
 
         console.log("Environment", Utility.inspect(instance, { colors: true }));
 
         expect(instance.environment).toEqual("environment");
     });
 
-    it("Application", async () => {
-        const Import = await import("@cloud-technology/parameter");
-
-        const instance = Import.Parameter.create(input, "Identifier");
-
-        console.log("Application", Utility.inspect(instance, { colors: true }));
-
-        expect(instance.application).toEqual("application");
-    });
-
     it("Service", async () => {
         const Import = await import("@cloud-technology/parameter");
 
-        const instance = Import.Parameter.create(input, "Identifier");
+        const instance = Import.Parameter.initialize(input, true);
 
         console.log("service", Utility.inspect(instance, { colors: true }));
 
@@ -130,9 +120,9 @@ describe( "Unit Test (Identifier)", () => {
     it("Identifier", async () => {
         const Import = await import("@cloud-technology/parameter");
 
-        const instance = Import.Parameter.create(input, "Identifier");
+        const instance = Import.Parameter.initialize(input, true);
 
-        console.log("Identifier", Utility.inspect(instance, { colors: true }));
+        console.log("Application", Utility.inspect(instance, { colors: true }));
 
         expect(instance.identifier).toEqual("identifier");
     });
@@ -140,74 +130,10 @@ describe( "Unit Test (Identifier)", () => {
     it("Properties", async () => {
         const Import = await import("@cloud-technology/parameter");
 
-        const instance = Import.Parameter.create(input, "Identifier");
+        const instance = Import.Parameter.initialize(input, true);
 
         console.log("Properties", Utility.inspect(instance, { colors: true }));
 
-        expect(instance.properties).toEqual(5);
-    });
-} );
-
-describe( "Unit Test (Default)", () => {
-    const input = "organization/environment/application/service";
-
-    it("Generator", async () => {
-        const Import = await import("@cloud-technology/parameter");
-
-        const instance = Import.Parameter.create(input, "Default");
-
-        console.log("Instance", Utility.inspect(instance, { colors: true }));
-
-        expect(instance).toBeTruthy();
-    });
-
-    it("Organization", async () => {
-        const Import = await import("@cloud-technology/parameter");
-
-        const instance = Import.Parameter.create(input, "Default");
-
-        console.log("Organization", Utility.inspect(instance, { colors: true }));
-
-        expect(instance.organization).toEqual("organization");
-    });
-
-    it("Environment", async () => {
-        const Import = await import("@cloud-technology/parameter");
-
-        const instance = Import.Parameter.create(input, "Default");
-
-        console.log("Environment", Utility.inspect(instance, { colors: true }));
-
-        expect(instance.environment).toEqual("environment");
-    });
-
-    it("Application", async () => {
-        const Import = await import("@cloud-technology/parameter");
-
-        const instance = Import.Parameter.create(input, "Default");
-
-        console.log("Application", Utility.inspect(instance, { colors: true }));
-
-        expect(instance.application).toEqual("application");
-    });
-
-    it("Service", async () => {
-        const Import = await import("@cloud-technology/parameter");
-
-        const instance = Import.Parameter.create(input, "Default");
-
-        console.log("service", Utility.inspect(instance, { colors: true }));
-
-        expect(instance.service).toEqual("service");
-    });
-
-    it("Properties", async () => {
-        const Import = await import("@cloud-technology/parameter");
-
-        const instance = Import.Parameter.create(input, "Default");
-
-        console.log("Properties", Utility.inspect(instance, { colors: true }));
-
-        expect(instance.properties).toEqual(4);
+        expect(instance.string().split("/").length).toEqual(4);
     });
 } );
