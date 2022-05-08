@@ -4,7 +4,7 @@ describe( "Unit Test (Extended)", () => {
     const input = "organization/environment/application/service/identifier";
 
     it("Generator", async () => {
-        const Import = await import("@cloud-technology/parameter");
+        const Import = await import("@iac-factory/parameter");
 
         const instance = Import.Parameter.initialize(input, true);
 
@@ -14,7 +14,7 @@ describe( "Unit Test (Extended)", () => {
     });
 
     it("Organization", async () => {
-        const Import = await import("@cloud-technology/parameter");
+        const Import = await import("@iac-factory/parameter");
 
         const instance = Import.Parameter.initialize(input, true);
 
@@ -24,7 +24,7 @@ describe( "Unit Test (Extended)", () => {
     });
 
     it("Environment", async () => {
-        const Import = await import("@cloud-technology/parameter");
+        const Import = await import("@iac-factory/parameter");
 
         const instance = Import.Parameter.initialize(input, true);
 
@@ -34,7 +34,7 @@ describe( "Unit Test (Extended)", () => {
     });
 
     it("Application", async () => {
-        const Import = await import("@cloud-technology/parameter");
+        const Import = await import("@iac-factory/parameter");
 
         const instance = Import.Parameter.initialize(input, true);
 
@@ -44,7 +44,7 @@ describe( "Unit Test (Extended)", () => {
     });
 
     it("Service", async () => {
-        const Import = await import("@cloud-technology/parameter");
+        const Import = await import("@iac-factory/parameter");
 
         const instance = Import.Parameter.initialize(input, true);
 
@@ -54,7 +54,7 @@ describe( "Unit Test (Extended)", () => {
     });
 
     it("Identifier", async () => {
-        const Import = await import("@cloud-technology/parameter");
+        const Import = await import("@iac-factory/parameter");
 
         const instance = Import.Parameter.initialize(input, true);
 
@@ -64,7 +64,7 @@ describe( "Unit Test (Extended)", () => {
     });
 
     it("Properties", async () => {
-        const Import = await import("@cloud-technology/parameter");
+        const Import = await import("@iac-factory/parameter");
 
         const instance = Import.Parameter.initialize(input, true);
 
@@ -78,7 +78,7 @@ describe( "Unit Test (Base)", () => {
     const input = "organization/environment/service/identifier";
 
     it("Generator", async () => {
-        const Import = await import("@cloud-technology/parameter");
+        const Import = await import("@iac-factory/parameter");
 
         const instance = Import.Parameter.initialize(input, true);
 
@@ -88,7 +88,7 @@ describe( "Unit Test (Base)", () => {
     });
 
     it("Organization", async () => {
-        const Import = await import("@cloud-technology/parameter");
+        const Import = await import("@iac-factory/parameter");
 
         const instance = Import.Parameter.initialize(input, true);
 
@@ -98,7 +98,7 @@ describe( "Unit Test (Base)", () => {
     });
 
     it("Environment", async () => {
-        const Import = await import("@cloud-technology/parameter");
+        const Import = await import("@iac-factory/parameter");
 
         const instance = Import.Parameter.initialize(input, true);
 
@@ -108,7 +108,7 @@ describe( "Unit Test (Base)", () => {
     });
 
     it("Service", async () => {
-        const Import = await import("@cloud-technology/parameter");
+        const Import = await import("@iac-factory/parameter");
 
         const instance = Import.Parameter.initialize(input, true);
 
@@ -118,7 +118,7 @@ describe( "Unit Test (Base)", () => {
     });
 
     it("Identifier", async () => {
-        const Import = await import("@cloud-technology/parameter");
+        const Import = await import("@iac-factory/parameter");
 
         const instance = Import.Parameter.initialize(input, true);
 
@@ -128,7 +128,7 @@ describe( "Unit Test (Base)", () => {
     });
 
     it("Properties", async () => {
-        const Import = await import("@cloud-technology/parameter");
+        const Import = await import("@iac-factory/parameter");
 
         const instance = Import.Parameter.initialize(input, true);
 

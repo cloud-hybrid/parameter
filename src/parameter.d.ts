@@ -63,7 +63,7 @@ declare enum Properties {
  * Parameters often used during configuration can be a
  * difficult concept to standardize.
  *
- * `@cloud-technology/parameter` aims to strictly define
+ * `@iac-factory/parameter` aims to strictly define
  * a naming and constructor convention to ease efforts associated
  * with configuration, while allowing for an easy inheritance
  * pattern to further extend from; examples of applicable

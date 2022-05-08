@@ -1,7 +1,10 @@
-﻿import Utility from "util";
-import { Parameter, Properties } from "@cloud-technology/parameter";
+﻿"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const tslib_1 = require("tslib");
+const util_1 = tslib_1.__importDefault(require("util"));
+const parameter_1 = require("@iac-factory/parameter");
 describe("String Unit Test", () => {
-    const parameter = new Parameter({
+    const parameter = new parameter_1.Parameter({
         organization: "organization",
         environment: "environment",
         application: "application",
@@ -18,30 +21,30 @@ describe("String Unit Test", () => {
     });
     it("Default", async () => {
         const $ = parameter.string();
-        console.log("String" + ":", Utility.inspect($, { colors: true }));
+        console.log("String" + ":", util_1.default.inspect($, { colors: true }));
         expect($).toBeTruthy();
     });
     it("Train-Case", async () => {
         const $ = parameter.string("Train-Case");
-        console.log("Train-Case" + ":", Utility.inspect($, { colors: true }));
+        console.log("Train-Case" + ":", util_1.default.inspect($, { colors: true }));
         expect($).toBeTruthy();
     });
     it("Screaming-Train-Case", async () => {
         const $ = parameter.string("Screaming-Train-Case");
-        console.log("Screaming-Train-Case" + ":", Utility.inspect($, { colors: true }));
+        console.log("Screaming-Train-Case" + ":", util_1.default.inspect($, { colors: true }));
         expect($).toBeTruthy();
     });
     it("Directory", async () => {
         const $ = parameter.string("Directory");
-        console.log("Directory" + ":", Utility.inspect($, { colors: true }));
+        console.log("Directory" + ":", util_1.default.inspect($, { colors: true }));
         expect($).toBeTruthy();
     });
     it("Enumeration", async () => {
         const $ = parameter.enumerations();
-        console.log("Directory" + ":", Utility.inspect($, { colors: true }));
-        expect($).toEqual(Properties.Extended);
+        console.log("Directory" + ":", util_1.default.inspect($, { colors: true }));
+        expect($).toEqual(parameter_1.Properties.Extended);
     });
-    const Default = new Parameter({
+    const Default = new parameter_1.Parameter({
         organization: "organization",
         environment: "environment",
         service: "service",
@@ -57,30 +60,30 @@ describe("String Unit Test", () => {
     });
     it("Default", async () => {
         const $ = Default.string();
-        console.log("String" + ":", Utility.inspect($, { colors: true }));
+        console.log("String" + ":", util_1.default.inspect($, { colors: true }));
         expect($).toBeTruthy();
     });
     it("Train-Case", async () => {
         const $ = Default.string("Train-Case");
-        console.log("Train-Case" + ":", Utility.inspect($, { colors: true }));
+        console.log("Train-Case" + ":", util_1.default.inspect($, { colors: true }));
         expect($).toBeTruthy();
     });
     it("Screaming-Train-Case", async () => {
         const $ = Default.string("Screaming-Train-Case");
-        console.log("Screaming-Train-Case" + ":", Utility.inspect($, { colors: true }));
+        console.log("Screaming-Train-Case" + ":", util_1.default.inspect($, { colors: true }));
         expect($).toBeTruthy();
     });
     it("Directory", async () => {
         const $ = Default.string("Directory");
-        console.log("Directory" + ":", Utility.inspect($, { colors: true }));
+        console.log("Directory" + ":", util_1.default.inspect($, { colors: true }));
         expect($).toBeTruthy();
     });
     it("Enumeration", async () => {
         const $ = Default.enumerations();
-        console.log("Directory" + ":", Utility.inspect($, { colors: true }));
-        expect($).toEqual(Properties.Base);
+        console.log("Directory" + ":", util_1.default.inspect($, { colors: true }));
+        expect($).toEqual(parameter_1.Properties.Base);
     });
-    const Identifier = new Parameter({
+    const Identifier = new parameter_1.Parameter({
         organization: "organization",
         environment: "environment",
         application: "application",
@@ -97,27 +100,27 @@ describe("String Unit Test", () => {
     });
     it("Default", async () => {
         const $ = Identifier.string();
-        console.log("String" + ":", Utility.inspect($, { colors: true }));
+        console.log("String" + ":", util_1.default.inspect($, { colors: true }));
         expect($).toBeTruthy();
     });
     it("Train-Case", async () => {
         const $ = Identifier.string("Train-Case");
-        console.log("Train-Case" + ":", Utility.inspect($, { colors: true }));
+        console.log("Train-Case" + ":", util_1.default.inspect($, { colors: true }));
         expect($).toBeTruthy();
     });
     it("Screaming-Train-Case", async () => {
         const $ = Identifier.string("Screaming-Train-Case");
-        console.log("Screaming-Train-Case" + ":", Utility.inspect($, { colors: true }));
+        console.log("Screaming-Train-Case" + ":", util_1.default.inspect($, { colors: true }));
         expect($).toBeTruthy();
     });
     it("Directory", async () => {
         const $ = Identifier.string("Directory");
-        console.log("Directory" + ":", Utility.inspect($, { colors: true }));
+        console.log("Directory" + ":", util_1.default.inspect($, { colors: true }));
         expect($).toBeTruthy();
     });
     it("Enumeration", async () => {
         const $ = Identifier.enumerations();
-        console.log("Directory" + ":", Utility.inspect($, { colors: true }));
-        expect($).toEqual(Properties.Extended);
+        console.log("Directory" + ":", util_1.default.inspect($, { colors: true }));
+        expect($).toEqual(parameter_1.Properties.Extended);
     });
 });

@@ -1,4 +1,4 @@
-# `@cloud-technology/parameter` #
+# `@iac-factory/parameter` #
 
 *A Zero-Dependency "Type-Interface" via Node.js*
 
@@ -16,7 +16,7 @@ to be used in cloud-related
 
 Parameters often used during configuration can be a difficult concept to standardize.
 
-`@cloud-technology/parameter` aims to strictly define a naming and constructor convention to ease efforts associated
+`@iac-factory/parameter` aims to strictly define a naming and constructor convention to ease efforts associated
 with configuration, while allowing for an easy inheritance pattern to further extend from; examples of applicable
 extensions include usages with:
 
@@ -44,7 +44,7 @@ What is meant by "Type-Interface" is welcome to interpretation. However, the int
 
 ## Usage ##
 
-`@cloud-technology/parameter` uses the latest Node.js LTS version; to quickly enable, run `nvm use`.
+`@iac-factory/parameter` uses the latest Node.js LTS version; to quickly enable, run `nvm use`.
 
 - See [installation guide](https://github.com/nvm-sh/nvm#about) for a quick walk-through on installing `nvm`.
 
@@ -84,7 +84,7 @@ For alternative build & unit-testing commands, please refer to the [commands lis
 
 ```node
 const Main = async () => {
-    const { Parameter } = await import("@cloud-technology/parameter");
+    const { Parameter } = await import("@iac-factory/parameter");
 
     const instance = new Parameter({
         organization: "IBM",
@@ -109,7 +109,7 @@ const Main = async () => {
 ### Modules ###
 
 ```node
-import { Parameter } from "@cloud-technology/parameter";
+import { Parameter } from "@iac-factory/parameter";
 
 const instance = new Parameter({
     organization: "IBM",

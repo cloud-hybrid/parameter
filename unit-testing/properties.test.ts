@@ -1,6 +1,6 @@
 import Utility from "util";
 
-import { Parameter } from "@cloud-technology/parameter";
+import { Parameter } from "@iac-factory/parameter";
 
 describe( "Unit Test", () => {
     const parameter = new Parameter({
@@ -20,7 +20,7 @@ describe( "Unit Test", () => {
     it("Identifier", () => expect(parameter).toHaveProperty("identifier"));
 
     it("Module", async () => {
-        const Import = await import("@cloud-technology/parameter");
+        const Import = await import("@iac-factory/parameter");
 
         expect(Import).toHaveProperty("Parameter");
 

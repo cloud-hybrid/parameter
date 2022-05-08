@@ -1,4 +1,4 @@
-import { Properties } from "@cloud-technology/parameter";
+import { Properties } from "@iac-factory/parameter";
 
 describe( "String Unit Test", () => {
     const $ = Properties;

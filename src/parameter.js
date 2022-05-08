@@ -1,4 +1,7 @@
-﻿import { Title, Case } from "./train-case.js";
+﻿"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Properties = exports.Type = exports.Parameter = void 0;
+const train_case_js_1 = require("./train-case.js");
 /***
  * Type Enumeration
  * ---
@@ -19,6 +22,7 @@ var Type;
     /// Train-Case string
     Type["Dash"] = "Train-Case";
 })(Type || (Type = {}));
+exports.Type = Type;
 /***
  * Properties Enumeration
  * ---
@@ -63,13 +67,14 @@ var Properties;
      */
     Properties[Properties["Extended"] = 5] = "Extended";
 })(Properties || (Properties = {}));
+exports.Properties = Properties;
 /***
  * *A Zero-Dependency Type-Interface via Node.js*
  *
  * Parameters often used during configuration can be a
  * difficult concept to standardize.
  *
- * `@cloud-technology/parameter` aims to strictly define
+ * `@iac-factory/parameter` aims to strictly define
  * a naming and constructor convention to ease efforts associated
  * with configuration, while allowing for an easy inheritance
  * pattern to further extend from; examples of applicable
@@ -206,9 +211,9 @@ class Parameter {
          *
          * @type {string}
          */
-        const cast = Case(property, { condense: true });
+        const cast = (0, train_case_js_1.Case)(property, { condense: true });
         /*** Return a potentially titled string, capitalizing according to type */
-        const $ = (type === "Screaming-Train-Case") ? Title(cast)
+        const $ = (type === "Screaming-Train-Case") ? (0, train_case_js_1.Title)(cast)
             : (type === "Train-Case") ? cast
                 : property;
         return (prefix) ? prefix + $ : $;
@@ -329,5 +334,5 @@ class Parameter {
         return evaluation;
     }
 }
-export { Parameter, Type, Properties };
-export default { Parameter };
+exports.Parameter = Parameter;
+exports.default = { Parameter };

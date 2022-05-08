@@ -1,21 +1,20 @@
 {
-    "name": "@cloud-technology/parameter",
+    "name": "@iac-factory/parameter",
     "private": false,
-    "version": "0.7.141",
-    "type": "module",
+    "version": "0.7.143",
+    "type": "commonjs",
     "main": "index.js",
     "description": "Base Parameter Type-Interface via Node.js",
     "types": "index.d.ts",
     "repository": {
         "type": "git",
         "directory": ".",
-        "url": "https://github.com/cloud-hybrid/parameter.git"
+        "url": "https://github.com/iac-factory/parameter.git"
     },
     "license": "BSD-2-Clause",
     "author": "Jacob B. Sanders",
     "scripts": {
         "test": "node unit-testing",
-        "start": "node unit-testing/watch",
         "build": "tsc --watch",
         "compile": "tsc && node unit-testing",
         "demonstrate": "node --es-module-specifier-resolution node .",
@@ -23,12 +22,12 @@
         "reinstall": "npm update && npm install --global --force",
         "prepublishOnly": "npm install --silent && tsc && npm run test"
     },
-    "dependencies": {},
     "devDependencies": {
-        "@cloud-technology/parameter": ".",
+        "@iac-factory/parameter": ".",
         "@jest/globals": "latest",
         "@types/jest": "latest",
         "@types/node": "latest",
+        "@typescript-eslint/eslint-plugin": "^5.22.0",
         "eslint": "latest",
         "jest": "latest",
         "ts-jest": "latest",
@@ -66,8 +65,5 @@
             "distribution",
             "node_modules"
         ]
-    },
-    "bin": {
-        "parameter": "unit-testing/index.js"
     }
 }

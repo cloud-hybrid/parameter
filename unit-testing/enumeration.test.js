@@ -1,6 +1,8 @@
-﻿import { Properties } from "@cloud-technology/parameter";
+﻿"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const parameter_1 = require("@iac-factory/parameter");
 describe("String Unit Test", () => {
-    const $ = Properties;
+    const $ = parameter_1.Properties;
     it("Default", async () => {
         expect($.Base).toEqual(4);
     });

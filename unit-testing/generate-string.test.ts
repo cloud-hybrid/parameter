@@ -1,6 +1,6 @@
 import Utility from "util";
 
-import { Parameter } from "@cloud-technology/parameter";
+import { Parameter } from "@iac-factory/parameter";
 
 describe( "Unit Test", () => {
     const input = "organization/environment/application/service/identifier";
